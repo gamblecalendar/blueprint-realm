@@ -1,6 +1,5 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import { Star, Code, Database, Cloud, Wrench } from "lucide-react";
 
 const Skills = () => {
@@ -27,9 +26,6 @@ const Skills = () => {
       name: "Building Rapport & Relationships",
       category: "Social & Interpersonal",
       level: "Expert",
-      proficiency: 95,
-      experience: "10+ years",
-      projects: 50,
       description: "Creating meaningful connections and fostering long-term relationships across diverse contexts",
       color: "from-blue-500 to-cyan-500",
       icon: "🤝"
@@ -38,34 +34,65 @@ const Skills = () => {
       name: "Empathy & Compassion",
       category: "Social & Interpersonal",
       level: "Expert",
-      proficiency: 90,
-      experience: "10+ years",
-      projects: 40,
       description: "Understanding and sharing feelings with others while providing emotional support",
       color: "from-pink-500 to-rose-500",
       icon: "❤️"
     },
     {
-      name: "Teamwork & Consensus Building",
+      name: "Inclusivity & Cultural Competence",
       category: "Social & Interpersonal",
       level: "Advanced",
-      proficiency: 85,
-      experience: "8+ years",
-      projects: 35,
-      description: "Collaborating effectively and building agreement among diverse team members",
+      description: "Embracing diversity and working effectively across cultures",
       color: "from-green-500 to-emerald-500",
-      icon: "👥"
+      icon: "🌍"
+    },
+    {
+      name: "Networking",
+      category: "Social & Interpersonal",
+      level: "Advanced",
+      description: "Building and maintaining professional relationships and connections",
+      color: "from-blue-500 to-purple-500",
+      icon: "🔗"
+    },
+    {
+      name: "Respectfulness & Manners",
+      category: "Social & Interpersonal",
+      level: "Expert",
+      description: "Demonstrating courtesy and proper etiquette in all interactions",
+      color: "from-purple-500 to-violet-500",
+      icon: "🎩"
+    },
+    {
+      name: "Small Talk & Approachability",
+      category: "Social & Interpersonal",
+      level: "Advanced",
+      description: "Engaging in casual conversation and being accessible to others",
+      color: "from-yellow-500 to-orange-500",
+      icon: "💭"
     },
     {
       name: "Social Awareness & Perceptiveness",
       category: "Social & Interpersonal",
       level: "Advanced",
-      proficiency: 80,
-      experience: "8+ years",
-      projects: 30,
-      description: "Reading social cues and understanding group dynamics and individual motivations",
-      color: "from-purple-500 to-violet-500",
+      description: "Reading social cues and understanding group dynamics",
+      color: "from-indigo-500 to-purple-500",
       icon: "👁️"
+    },
+    {
+      name: "Teamwork & Consensus Building",
+      category: "Social & Interpersonal",
+      level: "Expert",
+      description: "Collaborating effectively and building agreement among team members",
+      color: "from-teal-500 to-green-500",
+      icon: "👥"
+    },
+    {
+      name: "Understanding Boundaries",
+      category: "Social & Interpersonal",
+      level: "Advanced",
+      description: "Recognizing and respecting personal and professional limits",
+      color: "from-rose-500 to-pink-500",
+      icon: "🚧"
     },
     
     // Communication & Influence
@@ -73,229 +100,481 @@ const Skills = () => {
       name: "Active Listening",
       category: "Communication & Influence",
       level: "Expert",
-      proficiency: 95,
-      experience: "10+ years",
-      projects: 45,
       description: "Listening to understand without judgment, creating space for authentic dialogue",
       color: "from-indigo-500 to-blue-500",
       icon: "👂"
     },
     {
+      name: "Charisma",
+      category: "Communication & Influence",
+      level: "Advanced",
+      description: "Inspiring and attracting others through personal magnetism",
+      color: "from-amber-500 to-yellow-500",
+      icon: "✨"
+    },
+    {
+      name: "Diplomacy & Tactfulness",
+      category: "Communication & Influence",
+      level: "Expert",
+      description: "Handling sensitive situations with skill and consideration",
+      color: "from-green-500 to-teal-500",
+      icon: "🤝"
+    },
+    {
       name: "Effective Communication",
       category: "Communication & Influence",
       level: "Expert",
-      proficiency: 90,
-      experience: "10+ years",
-      projects: 50,
-      description: "Clear, open, and impactful communication across various mediums and audiences",
+      description: "Clear, open, and impactful communication across various mediums",
       color: "from-cyan-500 to-teal-500",
       icon: "💬"
+    },
+    {
+      name: "Feedback Giving & Receiving",
+      category: "Communication & Influence",
+      level: "Advanced",
+      description: "Providing constructive feedback and receiving input gracefully",
+      color: "from-purple-500 to-pink-500",
+      icon: "🔄"
+    },
+    {
+      name: "Influence & Persuasion",
+      category: "Communication & Influence",
+      level: "Advanced",
+      description: "Convincing others and driving positive change",
+      color: "from-red-500 to-orange-500",
+      icon: "🎯"
+    },
+    {
+      name: "Negotiation",
+      category: "Communication & Influence",
+      level: "Intermediate",
+      description: "Finding mutually beneficial solutions through discussion",
+      color: "from-slate-500 to-gray-600",
+      icon: "⚖️"
     },
     {
       name: "Public Speaking",
       category: "Communication & Influence",
       level: "Advanced",
-      proficiency: 85,
-      experience: "6+ years",
-      projects: 25,
-      description: "Engaging and inspiring audiences through confident and compelling presentations",
+      description: "Engaging and inspiring audiences through presentations",
       color: "from-orange-500 to-red-500",
       icon: "🎤"
     },
     {
       name: "Storytelling",
       category: "Communication & Influence",
-      level: "Advanced",
-      proficiency: 80,
-      experience: "8+ years",
-      projects: 30,
-      description: "Crafting compelling narratives that resonate and inspire action",
-      color: "from-yellow-500 to-orange-500",
+      level: "Expert",
+      description: "Crafting compelling narratives that resonate and inspire",
+      color: "from-violet-500 to-purple-500",
       icon: "📚"
+    },
+    {
+      name: "Writing",
+      category: "Communication & Influence",
+      level: "Advanced",
+      description: "Expressing ideas clearly and persuasively in written form",
+      color: "from-emerald-500 to-teal-500",
+      icon: "✍️"
     },
 
     // Leadership & Empowerment
     {
-      name: "Leadership",
-      category: "Leadership & Empowerment",
-      level: "Expert",
-      proficiency: 90,
-      experience: "8+ years",
-      projects: 20,
-      description: "Guiding and inspiring others toward shared vision and goals",
-      color: "from-purple-500 to-pink-500",
-      icon: "👑"
-    },
-    {
-      name: "Coaching & Mentoring",
+      name: "Assertiveness",
       category: "Leadership & Empowerment",
       level: "Advanced",
-      proficiency: 85,
-      experience: "6+ years",
-      projects: 15,
-      description: "Developing others' potential through guidance, support, and skill development",
-      color: "from-green-500 to-blue-500",
-      icon: "🎯"
+      description: "Standing up for yourself and others while respecting boundaries",
+      color: "from-red-500 to-pink-500",
+      icon: "💪"
     },
     {
       name: "Building Trust",
       category: "Leadership & Empowerment",
       level: "Expert",
-      proficiency: 95,
-      experience: "10+ years",
-      projects: 40,
-      description: "Establishing reliability and credibility through consistent actions and transparency",
+      description: "Establishing reliability and credibility through consistent actions",
       color: "from-blue-500 to-purple-500",
       icon: "🛡️"
     },
     {
-      name: "Enabling Others",
+      name: "Coaching & Mentoring",
+      category: "Leadership & Empowerment",
+      level: "Expert",
+      description: "Developing others' potential through guidance and support",
+      color: "from-green-500 to-blue-500",
+      icon: "🎯"
+    },
+    {
+      name: "Delegation",
       category: "Leadership & Empowerment",
       level: "Advanced",
-      proficiency: 80,
-      experience: "6+ years",
-      projects: 25,
-      description: "Empowering others to achieve their best by removing barriers and providing support",
+      description: "Assigning responsibilities effectively while maintaining accountability",
+      color: "from-purple-500 to-indigo-500",
+      icon: "📋"
+    },
+    {
+      name: "Enabling Others",
+      category: "Leadership & Empowerment",
+      level: "Expert",
+      description: "Empowering others to achieve their best by removing barriers",
       color: "from-teal-500 to-green-500",
       icon: "🚀"
+    },
+    {
+      name: "Leadership",
+      category: "Leadership & Empowerment",
+      level: "Expert",
+      description: "Guiding and inspiring others toward shared vision and goals",
+      color: "from-amber-500 to-orange-500",
+      icon: "👑"
+    },
+    {
+      name: "Management",
+      category: "Leadership & Empowerment",
+      level: "Advanced",
+      description: "Organizing resources and people to achieve objectives",
+      color: "from-slate-600 to-gray-700",
+      icon: "⚙️"
+    },
+    {
+      name: "Nurturing & Emotional Support",
+      category: "Leadership & Empowerment",
+      level: "Expert",
+      description: "Providing care and emotional guidance to help others grow",
+      color: "from-pink-500 to-rose-500",
+      icon: "🤗"
     },
 
     // Cognitive & Strategic Abilities
     {
-      name: "Critical Thinking",
+      name: "Active Learning & Curiosity",
       category: "Cognitive & Strategic",
       level: "Expert",
-      proficiency: 95,
-      experience: "10+ years",
-      projects: 50,
-      description: "Analyzing information objectively and making reasoned judgments",
-      color: "from-gray-600 to-gray-800",
+      description: "Continuously seeking knowledge and embracing new challenges",
+      color: "from-blue-500 to-cyan-500",
       icon: "🧠"
     },
     {
-      name: "Problem Solving",
+      name: "Adaptability & Flexibility",
       category: "Cognitive & Strategic",
       level: "Expert",
-      proficiency: 90,
-      experience: "10+ years",
-      projects: 45,
-      description: "Identifying issues and developing effective, innovative solutions",
-      color: "from-red-500 to-orange-500",
-      icon: "🔧"
+      description: "Adjusting approach and mindset to changing circumstances",
+      color: "from-green-500 to-emerald-500",
+      icon: "🔄"
+    },
+    {
+      name: "Attention to Detail",
+      category: "Cognitive & Strategic",
+      level: "Advanced",
+      description: "Maintaining accuracy and thoroughness in work and observations",
+      color: "from-purple-500 to-violet-500",
+      icon: "🔍"
+    },
+    {
+      name: "Critical Thinking",
+      category: "Cognitive & Strategic",
+      level: "Expert",
+      description: "Analyzing information objectively and making reasoned judgments",
+      color: "from-gray-600 to-slate-700",
+      icon: "🤔"
     },
     {
       name: "Creativity & Creative Problem-Solving",
       category: "Cognitive & Strategic",
-      level: "Advanced",
-      proficiency: 85,
-      experience: "8+ years",
-      projects: 35,
-      description: "Generating innovative ideas and approaching challenges from unique angles",
-      color: "from-violet-500 to-purple-500",
-      icon: "🎨"
-    },
-    {
-      name: "Goal Setting & Planning",
-      category: "Cognitive & Strategic",
-      level: "Advanced",
-      proficiency: 80,
-      experience: "8+ years",
-      projects: 30,
-      description: "Establishing clear objectives and developing strategic roadmaps for achievement",
-      color: "from-emerald-500 to-teal-500",
-      icon: "📋"
-    },
-
-    // Personal Effectiveness & Resilience
-    {
-      name: "Self-Awareness & Self-Reflection",
-      category: "Personal Effectiveness",
       level: "Expert",
-      proficiency: 95,
-      experience: "10+ years",
-      projects: 40,
-      description: "Understanding personal strengths, weaknesses, and impact on others",
-      color: "from-amber-500 to-yellow-500",
-      icon: "🪞"
-    },
-    {
-      name: "Resilience",
-      category: "Personal Effectiveness",
-      level: "Expert",
-      proficiency: 90,
-      experience: "10+ years",
-      projects: 35,
-      description: "Bouncing back from setbacks and maintaining effectiveness under pressure",
-      color: "from-stone-500 to-gray-600",
-      icon: "💪"
-    },
-    {
-      name: "Time Management & Personal Workflow",
-      category: "Personal Effectiveness",
-      level: "Advanced",
-      proficiency: 85,
-      experience: "8+ years",
-      projects: 40,
-      description: "Optimizing productivity and managing priorities effectively",
-      color: "from-blue-600 to-indigo-600",
-      icon: "⏰"
-    },
-    {
-      name: "Emotional Regulation & Expression",
-      category: "Personal Effectiveness",
-      level: "Advanced",
-      proficiency: 80,
-      experience: "6+ years",
-      projects: 25,
-      description: "Managing emotions effectively while expressing them appropriately",
-      color: "from-rose-500 to-pink-500",
-      icon: "🎭"
-    },
-
-    // Professional & Technical Skills
-    {
-      name: "Project & Task Management",
-      category: "Professional & Technical",
-      level: "Expert",
-      proficiency: 95,
-      experience: "8+ years",
-      projects: 30,
-      description: "Planning, executing, and delivering projects on time and within scope",
-      color: "from-slate-600 to-slate-800",
-      icon: "📊"
-    },
-    {
-      name: "Design & Visual Communication",
-      category: "Professional & Technical",
-      level: "Advanced",
-      proficiency: 85,
-      experience: "6+ years",
-      projects: 25,
-      description: "Creating compelling visual content that communicates ideas effectively",
+      description: "Generating innovative ideas and approaching challenges uniquely",
       color: "from-pink-500 to-purple-500",
       icon: "🎨"
     },
     {
       name: "Data Analysis & Data Manipulation",
-      category: "Professional & Technical",
+      category: "Cognitive & Strategic",
       level: "Advanced",
-      proficiency: 80,
-      experience: "5+ years",
-      projects: 20,
       description: "Extracting insights from data and presenting findings clearly",
-      color: "from-green-600 to-emerald-600",
-      icon: "📈"
+      color: "from-emerald-500 to-teal-500",
+      icon: "📊"
     },
+    {
+      name: "Decisiveness",
+      category: "Cognitive & Strategic",
+      level: "Advanced",
+      description: "Making timely decisions with available information",
+      color: "from-red-500 to-orange-500",
+      icon: "⚡"
+    },
+    {
+      name: "Goal Setting & Planning",
+      category: "Cognitive & Strategic",
+      level: "Expert",
+      description: "Establishing clear objectives and developing strategic roadmaps",
+      color: "from-indigo-500 to-blue-500",
+      icon: "🎯"
+    },
+    {
+      name: "Intuition",
+      category: "Cognitive & Strategic",
+      level: "Advanced",
+      description: "Using instinct and gut feelings to guide decisions",
+      color: "from-violet-500 to-purple-500",
+      icon: "💫"
+    },
+    {
+      name: "Problem Solving",
+      category: "Cognitive & Strategic",
+      level: "Expert",
+      description: "Identifying issues and developing effective solutions",
+      color: "from-orange-500 to-red-500",
+      icon: "🔧"
+    },
+    {
+      name: "Research Skills",
+      category: "Cognitive & Strategic",
+      level: "Advanced",
+      description: "Finding, evaluating, and synthesizing information effectively",
+      color: "from-cyan-500 to-blue-500",
+      icon: "🔬"
+    },
+    {
+      name: "Resourcefulness",
+      category: "Cognitive & Strategic",
+      level: "Expert",
+      description: "Finding creative ways to overcome obstacles with available means",
+      color: "from-yellow-500 to-orange-500",
+      icon: "🛠️"
+    },
+
+    // Personal Effectiveness & Resilience
+    {
+      name: "Authenticity & Honesty",
+      category: "Personal Effectiveness",
+      level: "Expert",
+      description: "Being genuine and truthful in all interactions",
+      color: "from-blue-500 to-indigo-500",
+      icon: "💎"
+    },
+    {
+      name: "Confidence & Social Confidence",
+      category: "Personal Effectiveness",
+      level: "Advanced",
+      description: "Believing in yourself and feeling comfortable in social situations",
+      color: "from-purple-500 to-pink-500",
+      icon: "🌟"
+    },
+    {
+      name: "Emotional Regulation & Expression",
+      category: "Personal Effectiveness",
+      level: "Advanced",
+      description: "Managing emotions effectively while expressing them appropriately",
+      color: "from-rose-500 to-pink-500",
+      icon: "🎭"
+    },
+    {
+      name: "Enthusiasm & Positivity",
+      category: "Personal Effectiveness",
+      level: "Expert",
+      description: "Maintaining an optimistic outlook and energetic approach",
+      color: "from-yellow-500 to-orange-500",
+      icon: "☀️"
+    },
+    {
+      name: "Generosity & Graciousness",
+      category: "Personal Effectiveness",
+      level: "Expert",
+      description: "Being giving with time, resources, and kindness",
+      color: "from-green-500 to-emerald-500",
+      icon: "🎁"
+    },
+    {
+      name: "Gratitude & Humility",
+      category: "Personal Effectiveness",
+      level: "Expert",
+      description: "Appreciating what you have and staying humble about achievements",
+      color: "from-amber-500 to-yellow-500",
+      icon: "🙏"
+    },
+    {
+      name: "Mindfulness & Reflective Practice",
+      category: "Personal Effectiveness",
+      level: "Advanced",
+      description: "Being present and regularly examining thoughts and actions",
+      color: "from-teal-500 to-cyan-500",
+      icon: "🧘"
+    },
+    {
+      name: "Mindset of Abundance",
+      category: "Personal Effectiveness",
+      level: "Advanced",
+      description: "Believing there are enough opportunities and resources for everyone",
+      color: "from-emerald-500 to-green-500",
+      icon: "🌱"
+    },
+    {
+      name: "Patience",
+      category: "Personal Effectiveness",
+      level: "Advanced",
+      description: "Remaining calm and composed when facing delays or difficulties",
+      color: "from-blue-500 to-teal-500",
+      icon: "⏳"
+    },
+    {
+      name: "Resilience",
+      category: "Personal Effectiveness",
+      level: "Expert",
+      description: "Bouncing back from setbacks and maintaining effectiveness under pressure",
+      color: "from-stone-500 to-gray-600",
+      icon: "💪"
+    },
+    {
+      name: "Self-Awareness & Self-Reflection",
+      category: "Personal Effectiveness",
+      level: "Expert",
+      description: "Understanding personal strengths, weaknesses, and impact on others",
+      color: "from-violet-500 to-purple-500",
+      icon: "🪞"
+    },
+    {
+      name: "Self-Discipline",
+      category: "Personal Effectiveness",
+      level: "Advanced",
+      description: "Controlling impulses and staying focused on long-term goals",
+      color: "from-red-500 to-orange-500",
+      icon: "🎯"
+    },
+    {
+      name: "Sense of Humor",
+      category: "Personal Effectiveness",
+      level: "Advanced",
+      description: "Using humor appropriately to lighten mood and build connections",
+      color: "from-pink-500 to-rose-500",
+      icon: "😄"
+    },
+    {
+      name: "Time Management & Personal Workflow",
+      category: "Personal Effectiveness",
+      level: "Expert",
+      description: "Optimizing productivity and managing priorities effectively",
+      color: "from-indigo-500 to-blue-500",
+      icon: "⏰"
+    },
+    {
+      name: "Trustworthiness & Dependability",
+      category: "Personal Effectiveness",
+      level: "Expert",
+      description: "Being reliable and consistent in words and actions",
+      color: "from-slate-600 to-gray-700",
+      icon: "🤝"
+    },
+
+    // Professional & Technical Skills
     {
       name: "Automation & Optimization",
       category: "Professional & Technical",
-      level: "Intermediate",
-      proficiency: 75,
-      experience: "4+ years",
-      projects: 15,
+      level: "Advanced",
       description: "Streamlining processes and improving efficiency through systematic improvements",
-      color: "from-cyan-600 to-blue-600",
+      color: "from-cyan-500 to-blue-500",
       icon: "⚙️"
+    },
+    {
+      name: "Cleaning & Organizing",
+      category: "Professional & Technical",
+      level: "Advanced",
+      description: "Maintaining order and cleanliness in physical and digital spaces",
+      color: "from-green-500 to-emerald-500",
+      icon: "🧹"
+    },
+    {
+      name: "Copywriting",
+      category: "Professional & Technical",
+      level: "Intermediate",
+      description: "Writing persuasive content for marketing and communication",
+      color: "from-purple-500 to-violet-500",
+      icon: "📝"
+    },
+    {
+      name: "CRM (Customer Relationship Management)",
+      category: "Professional & Technical",
+      level: "Intermediate",
+      description: "Managing customer interactions and relationships systematically",
+      color: "from-blue-500 to-indigo-500",
+      icon: "👥"
+    },
+    {
+      name: "Design & Visual Communication",
+      category: "Professional & Technical",
+      level: "Advanced",
+      description: "Creating compelling visual content that communicates ideas effectively",
+      color: "from-pink-500 to-purple-500",
+      icon: "🎨"
+    },
+    {
+      name: "Hands-on Approach Skills",
+      category: "Professional & Technical",
+      level: "Expert",
+      description: "Taking direct action and getting personally involved in tasks",
+      color: "from-orange-500 to-red-500",
+      icon: "🔨"
+    },
+    {
+      name: "Infographic / Data Visualization",
+      category: "Professional & Technical",
+      level: "Advanced",
+      description: "Presenting complex information through clear visual formats",
+      color: "from-emerald-500 to-teal-500",
+      icon: "📊"
+    },
+    {
+      name: "Lead Generation",
+      category: "Professional & Technical",
+      level: "Intermediate",
+      description: "Identifying and attracting potential customers or clients",
+      color: "from-yellow-500 to-orange-500",
+      icon: "🎯"
+    },
+    {
+      name: "Marketing",
+      category: "Professional & Technical",
+      level: "Advanced",
+      description: "Promoting products, services, or ideas to target audiences",
+      color: "from-red-500 to-pink-500",
+      icon: "📢"
+    },
+    {
+      name: "Onboarding / Training",
+      category: "Professional & Technical",
+      level: "Expert",
+      description: "Helping new team members or users get started effectively",
+      color: "from-teal-500 to-cyan-500",
+      icon: "🎓"
+    },
+    {
+      name: "Project & Task Management",
+      category: "Professional & Technical",
+      level: "Expert",
+      description: "Planning, executing, and delivering projects on time and within scope",
+      color: "from-slate-600 to-gray-700",
+      icon: "📋"
+    },
+    {
+      name: "Sales",
+      category: "Professional & Technical",
+      level: "Intermediate",
+      description: "Converting prospects into customers through persuasive communication",
+      color: "from-green-600 to-emerald-600",
+      icon: "💰"
+    },
+    {
+      name: "Spreadsheets",
+      category: "Professional & Technical",
+      level: "Advanced",
+      description: "Using spreadsheet software for data analysis and organization",
+      color: "from-blue-600 to-indigo-600",
+      icon: "📈"
+    },
+    {
+      name: "Subject Expert (SME)",
+      category: "Professional & Technical",
+      level: "Expert",
+      description: "Deep knowledge and expertise in specific domains or topics",
+      color: "from-violet-600 to-purple-600",
+      icon: "🎓"
     }
   ];
 
@@ -392,20 +671,6 @@ const Skills = () => {
                 {skill.description}
               </p>
 
-              <div className="space-y-3">
-                <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-sm text-muted-foreground">Proficiency</span>
-                    <span className="text-sm font-semibold">{skill.proficiency}%</span>
-                  </div>
-                  <Progress value={skill.proficiency} className="h-2" />
-                </div>
-
-                <div className="flex justify-between text-sm text-muted-foreground">
-                  <span>🕒 Experience: {skill.experience}</span>
-                  <span>📂 Projects: {skill.projects}</span>
-                </div>
-              </div>
             </Card>
           ))}
         </div>
