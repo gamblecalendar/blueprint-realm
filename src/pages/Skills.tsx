@@ -5,86 +5,297 @@ import { Star, Code, Database, Cloud, Wrench } from "lucide-react";
 
 const Skills = () => {
   const stats = [
-    { label: "Total Skills", value: "18", color: "from-blue-500 to-cyan-500" },
-    { label: "Projects Completed", value: "284", color: "from-purple-500 to-pink-500" },
-    { label: "Years Experience", value: "4+", color: "from-green-500 to-emerald-500" },
-    { label: "Expert Level", value: "6", color: "from-orange-500 to-red-500" }
+    { label: "Skill Categories", value: "6", color: "from-blue-500 to-cyan-500" },
+    { label: "Total Skills", value: "65+", color: "from-purple-500 to-pink-500" },
+    { label: "Years Developing", value: "10+", color: "from-green-500 to-emerald-500" },
+    { label: "Core Strengths", value: "15", color: "from-orange-500 to-red-500" }
   ];
 
   const skillCategories = [
     { name: "All Skills", active: true, icon: Star },
-    { name: "Frontend", active: false, icon: Code },
-    { name: "Backend", active: false, icon: Database },
-    { name: "Cloud & DevOps", active: false, icon: Cloud },
-    { name: "Tools & Others", active: false, icon: Wrench }
+    { name: "Social & Interpersonal", active: false, icon: Code },
+    { name: "Communication & Influence", active: false, icon: Database },
+    { name: "Leadership & Empowerment", active: false, icon: Cloud },
+    { name: "Cognitive & Strategic", active: false, icon: Wrench },
+    { name: "Personal Effectiveness", active: false, icon: Star },
+    { name: "Professional & Technical", active: false, icon: Code }
   ];
 
   const skills = [
+    // Social & Interpersonal Mastery
     {
-      name: "React.js",
-      category: "Frontend",
+      name: "Building Rapport & Relationships",
+      category: "Social & Interpersonal",
       level: "Expert",
       proficiency: 95,
-      experience: "3+ years",
-      projects: 15,
-      description: "Advanced React development with hooks, context, and modern patterns",
+      experience: "10+ years",
+      projects: 50,
+      description: "Creating meaningful connections and fostering long-term relationships across diverse contexts",
       color: "from-blue-500 to-cyan-500",
-      icon: "⚛️"
+      icon: "🤝"
     },
     {
-      name: "TypeScript", 
-      category: "Frontend",
+      name: "Empathy & Compassion",
+      category: "Social & Interpersonal",
       level: "Expert",
       proficiency: 90,
-      experience: "2+ years", 
-      projects: 12,
-      description: "Type-safe JavaScript development with advanced TypeScript features",
-      color: "from-blue-600 to-blue-800",
-      icon: "📘"
+      experience: "10+ years",
+      projects: 40,
+      description: "Understanding and sharing feelings with others while providing emotional support",
+      color: "from-pink-500 to-rose-500",
+      icon: "❤️"
     },
     {
-      name: "Next.js",
-      category: "Frontend", 
+      name: "Teamwork & Consensus Building",
+      category: "Social & Interpersonal",
       level: "Advanced",
       proficiency: 85,
-      experience: "2+ years",
-      projects: 8,
-      description: "Full-stack React framework with SSR, SSG, and API routes",
-      color: "from-gray-700 to-gray-900",
-      icon: "▲"
+      experience: "8+ years",
+      projects: 35,
+      description: "Collaborating effectively and building agreement among diverse team members",
+      color: "from-green-500 to-emerald-500",
+      icon: "👥"
     },
     {
-      name: "Tailwind CSS",
-      category: "Frontend",
-      level: "Expert", 
+      name: "Social Awareness & Perceptiveness",
+      category: "Social & Interpersonal",
+      level: "Advanced",
+      proficiency: 80,
+      experience: "8+ years",
+      projects: 30,
+      description: "Reading social cues and understanding group dynamics and individual motivations",
+      color: "from-purple-500 to-violet-500",
+      icon: "👁️"
+    },
+    
+    // Communication & Influence
+    {
+      name: "Active Listening",
+      category: "Communication & Influence",
+      level: "Expert",
       proficiency: 95,
-      experience: "3+ years",
-      projects: 20,
-      description: "Utility-first CSS framework for rapid UI development",
+      experience: "10+ years",
+      projects: 45,
+      description: "Listening to understand without judgment, creating space for authentic dialogue",
+      color: "from-indigo-500 to-blue-500",
+      icon: "👂"
+    },
+    {
+      name: "Effective Communication",
+      category: "Communication & Influence",
+      level: "Expert",
+      proficiency: 90,
+      experience: "10+ years",
+      projects: 50,
+      description: "Clear, open, and impactful communication across various mediums and audiences",
       color: "from-cyan-500 to-teal-500",
+      icon: "💬"
+    },
+    {
+      name: "Public Speaking",
+      category: "Communication & Influence",
+      level: "Advanced",
+      proficiency: 85,
+      experience: "6+ years",
+      projects: 25,
+      description: "Engaging and inspiring audiences through confident and compelling presentations",
+      color: "from-orange-500 to-red-500",
+      icon: "🎤"
+    },
+    {
+      name: "Storytelling",
+      category: "Communication & Influence",
+      level: "Advanced",
+      proficiency: 80,
+      experience: "8+ years",
+      projects: 30,
+      description: "Crafting compelling narratives that resonate and inspire action",
+      color: "from-yellow-500 to-orange-500",
+      icon: "📚"
+    },
+
+    // Leadership & Empowerment
+    {
+      name: "Leadership",
+      category: "Leadership & Empowerment",
+      level: "Expert",
+      proficiency: 90,
+      experience: "8+ years",
+      projects: 20,
+      description: "Guiding and inspiring others toward shared vision and goals",
+      color: "from-purple-500 to-pink-500",
+      icon: "👑"
+    },
+    {
+      name: "Coaching & Mentoring",
+      category: "Leadership & Empowerment",
+      level: "Advanced",
+      proficiency: 85,
+      experience: "6+ years",
+      projects: 15,
+      description: "Developing others' potential through guidance, support, and skill development",
+      color: "from-green-500 to-blue-500",
+      icon: "🎯"
+    },
+    {
+      name: "Building Trust",
+      category: "Leadership & Empowerment",
+      level: "Expert",
+      proficiency: 95,
+      experience: "10+ years",
+      projects: 40,
+      description: "Establishing reliability and credibility through consistent actions and transparency",
+      color: "from-blue-500 to-purple-500",
+      icon: "🛡️"
+    },
+    {
+      name: "Enabling Others",
+      category: "Leadership & Empowerment",
+      level: "Advanced",
+      proficiency: 80,
+      experience: "6+ years",
+      projects: 25,
+      description: "Empowering others to achieve their best by removing barriers and providing support",
+      color: "from-teal-500 to-green-500",
+      icon: "🚀"
+    },
+
+    // Cognitive & Strategic Abilities
+    {
+      name: "Critical Thinking",
+      category: "Cognitive & Strategic",
+      level: "Expert",
+      proficiency: 95,
+      experience: "10+ years",
+      projects: 50,
+      description: "Analyzing information objectively and making reasoned judgments",
+      color: "from-gray-600 to-gray-800",
+      icon: "🧠"
+    },
+    {
+      name: "Problem Solving",
+      category: "Cognitive & Strategic",
+      level: "Expert",
+      proficiency: 90,
+      experience: "10+ years",
+      projects: 45,
+      description: "Identifying issues and developing effective, innovative solutions",
+      color: "from-red-500 to-orange-500",
+      icon: "🔧"
+    },
+    {
+      name: "Creativity & Creative Problem-Solving",
+      category: "Cognitive & Strategic",
+      level: "Advanced",
+      proficiency: 85,
+      experience: "8+ years",
+      projects: 35,
+      description: "Generating innovative ideas and approaching challenges from unique angles",
+      color: "from-violet-500 to-purple-500",
       icon: "🎨"
     },
     {
-      name: "Vue.js",
-      category: "Frontend",
-      level: "Intermediate",
-      proficiency: 70,
-      experience: "1+ years",
-      projects: 5,
-      description: "Progressive JavaScript framework for building user interfaces", 
-      color: "from-green-500 to-green-700",
-      icon: "🟢"
-    },
-    {
-      name: "Node.js",
-      category: "Backend",
+      name: "Goal Setting & Planning",
+      category: "Cognitive & Strategic",
       level: "Advanced",
       proficiency: 80,
-      experience: "2+ years", 
-      projects: 10,
-      description: "JavaScript runtime for building scalable backend applications",
-      color: "from-green-600 to-green-800",
-      icon: "🟩"
+      experience: "8+ years",
+      projects: 30,
+      description: "Establishing clear objectives and developing strategic roadmaps for achievement",
+      color: "from-emerald-500 to-teal-500",
+      icon: "📋"
+    },
+
+    // Personal Effectiveness & Resilience
+    {
+      name: "Self-Awareness & Self-Reflection",
+      category: "Personal Effectiveness",
+      level: "Expert",
+      proficiency: 95,
+      experience: "10+ years",
+      projects: 40,
+      description: "Understanding personal strengths, weaknesses, and impact on others",
+      color: "from-amber-500 to-yellow-500",
+      icon: "🪞"
+    },
+    {
+      name: "Resilience",
+      category: "Personal Effectiveness",
+      level: "Expert",
+      proficiency: 90,
+      experience: "10+ years",
+      projects: 35,
+      description: "Bouncing back from setbacks and maintaining effectiveness under pressure",
+      color: "from-stone-500 to-gray-600",
+      icon: "💪"
+    },
+    {
+      name: "Time Management & Personal Workflow",
+      category: "Personal Effectiveness",
+      level: "Advanced",
+      proficiency: 85,
+      experience: "8+ years",
+      projects: 40,
+      description: "Optimizing productivity and managing priorities effectively",
+      color: "from-blue-600 to-indigo-600",
+      icon: "⏰"
+    },
+    {
+      name: "Emotional Regulation & Expression",
+      category: "Personal Effectiveness",
+      level: "Advanced",
+      proficiency: 80,
+      experience: "6+ years",
+      projects: 25,
+      description: "Managing emotions effectively while expressing them appropriately",
+      color: "from-rose-500 to-pink-500",
+      icon: "🎭"
+    },
+
+    // Professional & Technical Skills
+    {
+      name: "Project & Task Management",
+      category: "Professional & Technical",
+      level: "Expert",
+      proficiency: 95,
+      experience: "8+ years",
+      projects: 30,
+      description: "Planning, executing, and delivering projects on time and within scope",
+      color: "from-slate-600 to-slate-800",
+      icon: "📊"
+    },
+    {
+      name: "Design & Visual Communication",
+      category: "Professional & Technical",
+      level: "Advanced",
+      proficiency: 85,
+      experience: "6+ years",
+      projects: 25,
+      description: "Creating compelling visual content that communicates ideas effectively",
+      color: "from-pink-500 to-purple-500",
+      icon: "🎨"
+    },
+    {
+      name: "Data Analysis & Data Manipulation",
+      category: "Professional & Technical",
+      level: "Advanced",
+      proficiency: 80,
+      experience: "5+ years",
+      projects: 20,
+      description: "Extracting insights from data and presenting findings clearly",
+      color: "from-green-600 to-emerald-600",
+      icon: "📈"
+    },
+    {
+      name: "Automation & Optimization",
+      category: "Professional & Technical",
+      level: "Intermediate",
+      proficiency: 75,
+      experience: "4+ years",
+      projects: 15,
+      description: "Streamlining processes and improving efficiency through systematic improvements",
+      color: "from-cyan-600 to-blue-600",
+      icon: "⚙️"
     }
   ];
 
