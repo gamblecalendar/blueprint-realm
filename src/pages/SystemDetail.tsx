@@ -1,90 +1,35 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckSquare, Clock, Zap, Users2, FileText, Building, Heart, Lightbulb, MessageSquare, Archive } from "lucide-react";
+import { getSystemsData, saveSystemsData, SystemData } from "@/lib/data";
+import { EditableText, EditableList } from "@/components/EditableText";
 
 const SystemDetail = () => {
   const { systemName } = useParams();
   const navigate = useNavigate();
+  const [systemsData, setSystemsData] = useState<Record<string, SystemData>>({});
 
-  // System data mapping
-  const systemsData = {
-    "task-management-system": {
-      name: "Task Management System",
-      icon: CheckSquare,
-      category: "Productivity & Work Systems",
-      description: "A comprehensive approach to organizing, prioritizing, and tracking tasks for maximum productivity.",
-      content: [
-        "Capture all tasks in a trusted system",
-        "Categorize by priority and context",
-        "Regular review and processing",
-        "Clear completion criteria"
-      ]
-    },
-    "time-management-system": {
-      name: "Time Management System", 
-      icon: Clock,
-      category: "Productivity & Work Systems",
-      description: "Strategic time allocation and scheduling methods to optimize daily productivity.",
-      content: [
-        "Time blocking for focused work",
-        "Energy-based scheduling",
-        "Buffer time for unexpected tasks",
-        "Regular time audits and optimization"
-      ]
-    },
-    "project-management": {
-      name: "Project Management",
-      icon: Zap,
-      category: "Productivity & Work Systems", 
-      description: "Frameworks for planning, executing, and delivering projects successfully.",
-      content: [
-        "Clear project scope and objectives",
-        "Milestone-based planning",
-        "Risk assessment and mitigation",
-        "Regular progress tracking and reporting"
-      ]
-    },
-    "note-taking-knowledge-base": {
-      name: "Note-Taking & Knowledge Base",
-      icon: FileText,
-      category: "Information & Knowledge Management",
-      description: "Systems for capturing, organizing, and retrieving information effectively.",
-      content: [
-        "Consistent note-taking methodology",
-        "Searchable and linked knowledge base",
-        "Regular review and synthesis",
-        "Cross-referencing and tagging system"
-      ]
-    },
-    "messaging-communication-system": {
-      name: "Messaging / Communication System",
-      icon: MessageSquare,
-      category: "Communication",
-      description: "Structured approach to managing digital communication and messaging.",
-      content: [
-        "Inbox zero methodology",
-        "Response time standards",
-        "Communication channel protocols",
-        "Message prioritization system"
-      ]
-    },
-    "health": {
-      name: "Health",
-      icon: Heart,
-      category: "Personal Life Areas",
-      description: "Holistic approach to maintaining physical and mental well-being.",
-      content: [
-        "Regular exercise routine",
-        "Preventive healthcare scheduling",
-        "Stress management techniques",
-        "Sleep optimization strategies"
-      ]
-    }
+  useEffect(() => {
+    setSystemsData(getSystemsData());
+  }, []);
+
+  const iconMap: Record<string, any> = {
+    CheckSquare, Clock, Zap, Users2, FileText, Building, Heart, Lightbulb, MessageSquare, Archive
   };
 
   const systemKey = systemName?.toLowerCase().replace(/\s+/g, '-') || '';
-  const systemData = systemsData[systemKey as keyof typeof systemsData];
+  const systemData = systemsData[systemKey];
+
+  const updateSystemData = (key: string, updates: Partial<SystemData>) => {
+    const updatedSystems = {
+      ...systemsData,
+      [key]: { ...systemsData[key], ...updates }
+    };
+    setSystemsData(updatedSystems);
+    saveSystemsData(updatedSystems);
+  };
 
   if (!systemData) {
     return (
@@ -100,14 +45,14 @@ const SystemDetail = () => {
           </Button>
           <Card className="card-gradient p-8 text-center">
             <h1 className="text-2xl font-bold mb-4">System Not Found</h1>
-            <p className="text-muted-foreground">This system page is under construction.</p>
+            <p className="text-muted-foreground">This system doesn't exist yet. Create it by adding it to your systems list.</p>
           </Card>
         </div>
       </div>
     );
   }
 
-  const SystemIcon = systemData.icon;
+  const SystemIcon = iconMap[systemData.icon] || FileText;
 
   return (
     <div className="min-h-screen py-8">
@@ -128,26 +73,33 @@ const SystemDetail = () => {
                 <div className="w-16 h-16 rounded-lg bg-primary/20 flex items-center justify-center">
                   <SystemIcon className="h-8 w-8 text-primary" />
                 </div>
-                <div>
-                  <CardTitle className="text-3xl mb-2">{systemData.name}</CardTitle>
-                  <p className="text-muted-foreground">{systemData.category}</p>
+                <div className="flex-1">
+                  <EditableText
+                    value={systemData.name}
+                    onSave={(value) => updateSystemData(systemKey, { name: value })}
+                    className="text-3xl font-bold mb-2"
+                  />
+                  <EditableText
+                    value={systemData.category}
+                    onSave={(value) => updateSystemData(systemKey, { category: value })}
+                    className="text-muted-foreground"
+                  />
                 </div>
               </div>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {systemData.description}
-              </p>
+              <EditableText
+                value={systemData.description}
+                onSave={(value) => updateSystemData(systemKey, { description: value })}
+                multiline
+                className="text-lg text-muted-foreground leading-relaxed"
+              />
             </CardHeader>
 
             <CardContent>
               <h3 className="text-xl font-semibold mb-4">Key Components</h3>
-              <div className="grid gap-3">
-                {systemData.content.map((item, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <p className="text-muted-foreground">{item}</p>
-                  </div>
-                ))}
-              </div>
+              <EditableList
+                items={systemData.content}
+                onSave={(items) => updateSystemData(systemKey, { content: items })}
+              />
 
               <div className="mt-8 p-6 bg-secondary/50 rounded-lg">
                 <h4 className="font-semibold mb-2">Implementation Status</h4>

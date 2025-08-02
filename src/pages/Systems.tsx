@@ -1,72 +1,48 @@
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { CheckSquare, Clock, Zap, Users2, FileText, Building, Heart, Lightbulb, MessageSquare, Archive } from "lucide-react";
+import { getSystemsData, SystemData } from "@/lib/data";
 
 const Systems = () => {
   const navigate = useNavigate();
+  const [systemsData, setSystemsData] = useState<Record<string, SystemData>>({});
+
+  useEffect(() => {
+    setSystemsData(getSystemsData());
+  }, []);
+
+  const iconMap: Record<string, any> = {
+    CheckSquare, Clock, Zap, Users2, FileText, Building, Heart, Lightbulb, MessageSquare, Archive
+  };
 
   const handleSystemClick = (systemName: string) => {
     const systemPath = systemName.toLowerCase().replace(/\s+/g, '-');
     navigate(`/systems/${systemPath}`);
   };
 
-  const systemCategories = [
-    {
-      title: "Productivity & Work Systems",
-      icon: CheckSquare,
-      color: "from-blue-500 to-cyan-500",
-      systems: [
-        { name: "Task Management System", icon: CheckSquare },
-        { name: "Time Management System", icon: Clock },
-        { name: "Project Management", icon: Zap },
-        { name: "Execution", icon: Zap },
-        { name: "GTD", icon: CheckSquare },
-        { name: "Work - Workplace System", icon: Building },
-        { name: "Delegation", icon: Users2 },
-        { name: "Onboarding", icon: Users2 },
-        { name: "Skill Acquiring", icon: Lightbulb },
-        { name: "Practicing", icon: Zap },
-        { name: "Decision Making System", icon: Lightbulb },
-        { name: "Systems Improvement", icon: Zap }
-      ]
-    },
-    {
-      title: "Information & Knowledge Management",
-      icon: FileText,
-      color: "from-green-500 to-emerald-500", 
-      systems: [
-        { name: "Note-Taking & Knowledge Base", icon: FileText },
-        { name: "File Management System", icon: Archive },
-        { name: "Digital Files / Digital Minimalism", icon: FileText },
-        { name: "A system to archive my skills", icon: Archive },
-        { name: "A home for each ideas, thoughts...", icon: Lightbulb }
-      ]
-    },
-    {
-      title: "Communication",
-      icon: MessageSquare,
-      color: "from-orange-500 to-red-500",
-      systems: [
-        { name: "Messaging / Communication System", icon: MessageSquare },
-        { name: "System to keep my inbox clear", icon: MessageSquare }
-      ]
-    },
-    {
-      title: "Personal Life Areas", 
-      icon: Heart,
-      color: "from-pink-500 to-purple-500",
-      systems: [
-        { name: "Health", icon: Heart },
-        { name: "Nutrition", icon: Heart },
-        { name: "Relationships", icon: Users2 },
-        { name: "Payments, Finance system", icon: Building },
-        { name: "Commute, Travel", icon: Zap },
-        { name: "Dealing with ADHD", icon: Lightbulb },
-        { name: "Important Concepts Reminder", icon: Lightbulb }
-      ]
+  // Group systems by category
+  const groupedSystems = Object.entries(systemsData).reduce((acc, [key, system]) => {
+    if (!acc[system.category]) {
+      acc[system.category] = [];
     }
-  ];
+    acc[system.category].push({ key, ...system });
+    return acc;
+  }, {} as Record<string, Array<SystemData & { key: string }>>);
 
+  const categoryColors = {
+    "Productivity & Work Systems": "from-blue-500 to-cyan-500",
+    "Information & Knowledge Management": "from-green-500 to-emerald-500",
+    "Communication": "from-orange-500 to-red-500",
+    "Personal Life Areas": "from-pink-500 to-purple-500"
+  };
+
+  const categoryIcons = {
+    "Productivity & Work Systems": CheckSquare,
+    "Information & Knowledge Management": FileText,
+    "Communication": MessageSquare,
+    "Personal Life Areas": Heart
+  };
   return (
     <div className="min-h-screen py-8">
       {/* Header */}
@@ -84,25 +60,27 @@ const Systems = () => {
 
       {/* Systems Grid */}
       <div className="container mx-auto px-4 space-y-12">
-        {systemCategories.map((category, categoryIndex) => {
-          const CategoryIcon = category.icon;
+        {Object.entries(groupedSystems).map(([categoryName, systems]) => {
+          const CategoryIcon = categoryIcons[categoryName as keyof typeof categoryIcons] || FileText;
+          const categoryColor = categoryColors[categoryName as keyof typeof categoryColors] || "from-gray-500 to-gray-600";
+          
           return (
-            <div key={categoryIndex}>
+            <div key={categoryName}>
               <div className="flex items-center mb-6">
-                <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center mr-4`}>
+                <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${categoryColor} flex items-center justify-center mr-4`}>
                   <CategoryIcon className="h-6 w-6 text-white" />
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                  {category.title}
+                  {categoryName}
                 </h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {category.systems.map((system, systemIndex) => {
-                  const SystemIcon = system.icon;
+                {systems.map((system) => {
+                  const SystemIcon = iconMap[system.icon] || FileText;
                   return (
                     <Card 
-                      key={systemIndex} 
+                      key={system.key} 
                       className="card-gradient p-6 group cursor-pointer"
                       onClick={() => handleSystemClick(system.name)}
                     >
