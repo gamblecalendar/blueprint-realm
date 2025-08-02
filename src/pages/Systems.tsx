@@ -1,7 +1,15 @@
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 import { CheckSquare, Clock, Zap, Users2, FileText, Building, Heart, Lightbulb, MessageSquare, Archive } from "lucide-react";
 
 const Systems = () => {
+  const navigate = useNavigate();
+
+  const handleSystemClick = (systemName: string) => {
+    const systemPath = systemName.toLowerCase().replace(/\s+/g, '-');
+    navigate(`/systems/${systemPath}`);
+  };
+
   const systemCategories = [
     {
       title: "Productivity & Work Systems",
@@ -96,6 +104,7 @@ const Systems = () => {
                     <Card 
                       key={systemIndex} 
                       className="card-gradient p-6 group cursor-pointer"
+                      onClick={() => handleSystemClick(system.name)}
                     >
                       <div className="flex items-center space-x-3">
                         <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center group-hover:bg-primary/20 transition-smooth">

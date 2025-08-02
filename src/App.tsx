@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Systems from "./pages/Systems";
+import SystemDetail from "./pages/SystemDetail";
 import Roadmaps from "./pages/Roadmaps";
 import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/systems" element={<Systems />} />
+          <Route path="/systems/:systemName" element={<SystemDetail />} />
           <Route path="/roadmaps" element={<Roadmaps />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/contact" element={<Contact />} />
