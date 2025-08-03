@@ -1,68 +1,91 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { CheckCircle, Circle, Palette, Server, Layers } from "lucide-react";
+import { CheckCircle, Circle, Target, Users, Presentation, TrendingUp } from "lucide-react";
 
 const Roadmaps = () => {
   const roadmapTabs = [
     { 
-      id: "frontend", 
-      name: "Frontend Development", 
-      icon: Palette,
+      id: "skills", 
+      name: "Core Skills", 
+      icon: Target,
       active: true 
     },
     { 
-      id: "backend", 
-      name: "Backend Development", 
-      icon: Server,
+      id: "career", 
+      name: "Career Goals", 
+      icon: TrendingUp,
       active: false 
     },
     { 
-      id: "fullstack", 
-      name: "Full-Stack Development", 
-      icon: Layers,
+      id: "company", 
+      name: "Company Growth", 
+      icon: Users,
       active: false 
     }
   ];
 
-  const frontendRoadmap = {
-    title: "Frontend Development",
-    description: "Complete roadmap for becoming a proficient frontend developer",
+  const skillsRoadmap = {
+    title: "Professional Development Roadmap",
+    description: "Strategic development plan for sales and technical mastery",
     sections: [
       {
-        title: "Fundamentals",
-        completed: 4,
-        total: 4,
-        status: "completed",
+        title: "Core Skills Development",
+        completed: 0,
+        total: 3,
+        status: "not-started",
         topics: [
-          { name: "HTML5 & Semantic Markup", completed: true },
-          { name: "CSS3 & Responsive Design", completed: true },
-          { name: "JavaScript ES6+", completed: true },
-          { name: "DOM Manipulation", completed: true }
+          { name: "Product Mastery", completed: false },
+          { name: "Presentation Skills", completed: false },
+          { name: "Negotiation", completed: false }
         ]
       },
       {
-        title: "Modern Frameworks",
-        completed: 2,
-        total: 4,
-        status: "in-progress",
+        title: "Career Goal: Technical Sales Expert",
+        completed: 0,
+        total: 3,
+        status: "not-started",
         topics: [
-          { name: "React.js", completed: true },
-          { name: "TypeScript", completed: true },
-          { name: "Vue.js", completed: false },
-          { name: "Angular", completed: false }
+          { name: "Technical Proficiency", completed: false },
+          { name: "Product Knowledge Mastery", completed: false },
+          { name: "Sales Excellence", completed: false }
         ]
       },
       {
-        title: "Advanced Topics",
+        title: "3-Month Sprint Goals",
+        completed: 0,
+        total: 5,
+        status: "not-started",
+        topics: [
+          { name: "Improve company work processes using AI", completed: false },
+          { name: "Merge company data and implement Airtable", completed: false },
+          { name: "Deliver presentation on ITAsoft's offerings", completed: false },
+          { name: "Learn data engineering fundamentals", completed: false },
+          { name: "Define clear learning objectives", completed: false }
+        ]
+      },
+      {
+        title: "Presentation Mastery",
         completed: 0,
         total: 4,
         status: "not-started",
         topics: [
-          { name: "State Management", completed: false },
-          { name: "Testing (Jest, Cypress)", completed: false },
-          { name: "Performance Optimization", completed: false },
-          { name: "PWA Development", completed: false }
+          { name: "Identify audience needs and information gaps", completed: false },
+          { name: "Develop presentation creation tools and frameworks", completed: false },
+          { name: "Master note-taking for effective communication", completed: false },
+          { name: "Learn to leverage AI resources for content creation", completed: false }
+        ]
+      },
+      {
+        title: "Company Integration & Leadership",
+        completed: 0,
+        total: 4,
+        status: "not-started",
+        topics: [
+          { name: "Get clear role definition in company", completed: false },
+          { name: "Pass technical team assessment", completed: false },
+          { name: "Pass sales team assessment", completed: false },
+          { name: "Present company analysis and improvement plan", completed: false }
         ]
       }
     ]
@@ -85,11 +108,10 @@ const Roadmaps = () => {
       <div className="container mx-auto px-4 mb-12">
         <div className="text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">Roadmaps</span>
+            <span className="gradient-text">Professional Roadmap</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Structured learning paths and development roadmaps to guide your journey from 
-            beginner to expert.
+            Strategic development plan for becoming a technical sales expert and driving company growth.
           </p>
         </div>
       </div>
@@ -122,19 +144,19 @@ const Roadmaps = () => {
         <Card className="card-gradient p-8 mb-8">
           <div className="text-center mb-8">
             <div className="w-16 h-16 rounded-full bg-gradient-primary flex items-center justify-center mx-auto mb-4">
-              <Palette className="h-8 w-8 text-white" />
+              <Target className="h-8 w-8 text-white" />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold gradient-text mb-2">
-              {frontendRoadmap.title}
+              {skillsRoadmap.title}
             </h2>
             <p className="text-muted-foreground">
-              {frontendRoadmap.description}
+              {skillsRoadmap.description}
             </p>
           </div>
 
           {/* Progress Overview */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {frontendRoadmap.sections.map((section, index) => (
+            {skillsRoadmap.sections.slice(0, 3).map((section, index) => (
               <Card key={index} className="bg-secondary/50 p-6">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className={`font-semibold ${getStatusColor(section.status)}`}>
@@ -162,7 +184,7 @@ const Roadmaps = () => {
 
         {/* Detailed Sections */}
         <div className="space-y-6">
-          {frontendRoadmap.sections.map((section, sectionIndex) => (
+          {skillsRoadmap.sections.map((section, sectionIndex) => (
             <Card key={sectionIndex} className="card-gradient p-6">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-3">
