@@ -5,13 +5,7 @@ import { Search, Calendar, Clock, Tag } from "lucide-react";
 
 const Blog = () => {
   const categories = [
-    { name: "All", active: true },
-    { name: "React", active: false },
-    { name: "TypeScript", active: false }, 
-    { name: "Database", active: false },
-    { name: "Security", active: false },
-    { name: "Performance", active: false },
-    { name: "CSS", active: false }
+    { name: "All", active: true }
   ];
 
   const blogPosts = [];
