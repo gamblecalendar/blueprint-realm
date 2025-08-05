@@ -109,9 +109,6 @@ const Home = () => {
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <Card className="card-gradient p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="gradient-text">Let's Build Something Amazing</span>
-            </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               Ready to collaborate or just want to chat about technology? 
               I'm always excited to connect with fellow developers.
