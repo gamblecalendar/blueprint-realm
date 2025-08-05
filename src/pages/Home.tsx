@@ -42,7 +42,7 @@ const Home = () => {
         <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="gradient-text">Developer</span>
+              <span className="gradient-text">Nathan's</span>
               <br />
               <span className="text-foreground">Portfolio</span>
             </h1>
