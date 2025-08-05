@@ -23,7 +23,7 @@ const Navigation = () => {
             <div className="rounded-lg bg-gradient-primary p-2">
               <Code2 className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-bold gradient-text">DevBlog</span>
+            <span className="text-xl font-bold gradient-text">Home</span>
           </Link>
 
           {/* Navigation Links */}

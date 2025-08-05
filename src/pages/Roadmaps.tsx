@@ -4,68 +4,12 @@ import { Progress } from "@/components/ui/progress";
 import { CheckCircle, Circle, Palette, Server, Layers } from "lucide-react";
 
 const Roadmaps = () => {
-  const roadmapTabs = [
-    { 
-      id: "frontend", 
-      name: "Frontend Development", 
-      icon: Palette,
-      active: true 
-    },
-    { 
-      id: "backend", 
-      name: "Backend Development", 
-      icon: Server,
-      active: false 
-    },
-    { 
-      id: "fullstack", 
-      name: "Full-Stack Development", 
-      icon: Layers,
-      active: false 
-    }
-  ];
+  const roadmapTabs = [];
 
-  const frontendRoadmap = {
-    title: "Frontend Development",
-    description: "Complete roadmap for becoming a proficient frontend developer",
-    sections: [
-      {
-        title: "Fundamentals",
-        completed: 4,
-        total: 4,
-        status: "completed",
-        topics: [
-          { name: "HTML5 & Semantic Markup", completed: true },
-          { name: "CSS3 & Responsive Design", completed: true },
-          { name: "JavaScript ES6+", completed: true },
-          { name: "DOM Manipulation", completed: true }
-        ]
-      },
-      {
-        title: "Modern Frameworks",
-        completed: 2,
-        total: 4,
-        status: "in-progress",
-        topics: [
-          { name: "React.js", completed: true },
-          { name: "TypeScript", completed: true },
-          { name: "Vue.js", completed: false },
-          { name: "Angular", completed: false }
-        ]
-      },
-      {
-        title: "Advanced Topics",
-        completed: 0,
-        total: 4,
-        status: "not-started",
-        topics: [
-          { name: "State Management", completed: false },
-          { name: "Testing (Jest, Cypress)", completed: false },
-          { name: "Performance Optimization", completed: false },
-          { name: "PWA Development", completed: false }
-        ]
-      }
-    ]
+  const roadmapData = {
+    title: "My Roadmap",
+    description: "Personal development roadmap",
+    sections: []
   };
 
   const getStatusColor = (status: string) => {
@@ -125,16 +69,16 @@ const Roadmaps = () => {
               <Palette className="h-8 w-8 text-white" />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold gradient-text mb-2">
-              {frontendRoadmap.title}
+              {roadmapData.title}
             </h2>
             <p className="text-muted-foreground">
-              {frontendRoadmap.description}
+              {roadmapData.description}
             </p>
           </div>
 
           {/* Progress Overview */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {frontendRoadmap.sections.map((section, index) => (
+            {roadmapData.sections.map((section, index) => (
               <Card key={index} className="bg-secondary/50 p-6">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className={`font-semibold ${getStatusColor(section.status)}`}>
@@ -162,7 +106,7 @@ const Roadmaps = () => {
 
         {/* Detailed Sections */}
         <div className="space-y-6">
-          {frontendRoadmap.sections.map((section, sectionIndex) => (
+          {roadmapData.sections.map((section, sectionIndex) => (
             <Card key={sectionIndex} className="card-gradient p-6">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-3">

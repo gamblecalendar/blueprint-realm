@@ -14,35 +14,7 @@ const Blog = () => {
     { name: "CSS", active: false }
   ];
 
-  const blogPosts = [
-    {
-      title: "Building Scalable React Applications",
-      excerpt: "Learn the best practices for creating maintainable and scalable React applications with modern patterns and tools.",
-      date: "1/15/2024",
-      readTime: "8 min read",
-      category: "React",
-      tags: ["React", "JavaScript", "Frontend"],
-      image: "/lovable-uploads/c138b8bd-c33d-4af3-bf34-e56f87574c07.png"
-    },
-    {
-      title: "Mastering TypeScript for Better Code Quality", 
-      excerpt: "Discover how TypeScript can improve your development workflow and catch errors before they reach production.",
-      date: "1/10/2024",
-      readTime: "12 min read", 
-      category: "TypeScript",
-      tags: ["TypeScript", "JavaScript", "Development"],
-      image: "/lovable-uploads/c138b8bd-c33d-4af3-bf34-e56f87574c07.png"
-    },
-    {
-      title: "Database Design Patterns for Modern Apps",
-      excerpt: "Explore essential database design patterns that will help you build efficient and maintainable data layers.",
-      date: "1/5/2024", 
-      readTime: "15 min read",
-      category: "Database",
-      tags: ["Database", "SQL", "Backend"],
-      image: "/lovable-uploads/c138b8bd-c33d-4af3-bf34-e56f87574c07.png"
-    }
-  ];
+  const blogPosts = [];
 
   const getCategoryColor = (category: string) => {
     const colors = {
