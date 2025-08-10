@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Code2, Home, BookOpen, Layers, Map, User, MessageSquare } from "lucide-react";
+import { Code2, Home, BookOpen, Layers, Map, User, MessageSquare, Calendar } from "lucide-react";
 
 const Navigation = () => {
   const location = useLocation();
@@ -11,6 +11,7 @@ const Navigation = () => {
     { path: "/systems", label: "Systems", icon: Layers },
     { path: "/roadmaps", label: "Roadmaps", icon: Map },
     { path: "/skills", label: "Skills", icon: User },
+    { path: "/routines", label: "Routines", icon: Calendar },
     { path: "/contact", label: "Contact", icon: MessageSquare },
   ];
 

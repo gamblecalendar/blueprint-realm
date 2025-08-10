@@ -11,6 +11,7 @@ import Systems from "./pages/Systems";
 import SystemDetail from "./pages/SystemDetail";
 import Roadmaps from "./pages/Roadmaps";
 import Skills from "./pages/Skills";
+import Routines from "./pages/Routines";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/systems/:systemName" element={<SystemDetail />} />
           <Route path="/roadmaps" element={<Roadmaps />} />
           <Route path="/skills" element={<Skills />} />
+          <Route path="/routines" element={<Routines />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
