@@ -12,6 +12,11 @@ import SystemDetail from "./pages/SystemDetail";
 import Roadmaps from "./pages/Roadmaps";
 import Skills from "./pages/Skills";
 import About from "./pages/About";
+import Values from "./pages/Values";
+import RoleModels from "./pages/RoleModels";
+import Routines from "./pages/Routines";
+import JournalHistory from "./pages/JournalHistory";
+import JournalEntry from "./pages/JournalEntry";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -33,6 +38,11 @@ const App = () => (
           <Route path="/roadmaps" element={<Roadmaps />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/about" element={<About />} />
+          <Route path="/values" element={<Values />} />
+          <Route path="/role-models" element={<RoleModels />} />
+          <Route path="/routines" element={<Routines />} />
+          <Route path="/journal-history" element={<JournalHistory />} />
+          <Route path="/journal/:weekId" element={<JournalEntry />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
