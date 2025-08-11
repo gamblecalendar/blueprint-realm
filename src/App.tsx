@@ -12,6 +12,8 @@ import SystemDetail from "./pages/SystemDetail";
 import Roadmaps from "./pages/Roadmaps";
 import Skills from "./pages/Skills";
 import Routines from "./pages/Routines";
+import About from "./pages/About";
+import WeeklyJournal from "./pages/WeeklyJournal";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -33,6 +35,8 @@ const App = () => (
           <Route path="/roadmaps" element={<Roadmaps />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/routines" element={<Routines />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/journal" element={<WeeklyJournal />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -12,6 +12,8 @@ const Navigation = () => {
     { path: "/roadmaps", label: "Roadmaps", icon: Map },
     { path: "/skills", label: "Skills", icon: User },
     { path: "/routines", label: "Routines", icon: Calendar },
+    { path: "/about", label: "About", icon: User },
+    { path: "/journal", label: "Journal", icon: BookOpen },
     { path: "/contact", label: "Contact", icon: MessageSquare },
   ];
 
