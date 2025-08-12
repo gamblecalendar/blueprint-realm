@@ -265,59 +265,95 @@ const Routines = () => {
                 </div>
                 <Progress value={weeklyProgress} className="w-full mb-4" />
                 
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      checked={weeklyTasks.gym1}
-                      onCheckedChange={() => handleWeeklyTaskChange('gym1')}
-                    />
+              {/* Gym Sessions */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-medium flex items-center space-x-2">
+                    <Dumbbell className="h-4 w-4 text-orange-500" />
+                    <span>Gym Sessions</span>
+                  </label>
+                  <span className="text-sm text-muted-foreground">
+                    {[weeklyTasks.gym1, weeklyTasks.gym2, weeklyTasks.gym3].filter(Boolean).length}/3 completed
+                  </span>
+                </div>
+                <div className="flex gap-1">
+                  {[1, 2, 3].map((num) => (
+                    <div
+                      key={num}
+                      className={`flex-1 h-12 rounded-lg border-2 cursor-pointer transition-all duration-200 flex items-center justify-center text-xs font-medium ${
+                        weeklyTasks[`gym${num}` as keyof typeof weeklyTasks]
+                          ? 'bg-orange-500 border-orange-500 text-white'
+                          : 'bg-background border-muted-foreground/20 hover:border-orange-500/50'
+                      }`}
+                      onClick={() => handleWeeklyTaskChange(`gym${num}` as keyof typeof weeklyTasks)}
+                    >
+                      Gym {num}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Other Activities */}
+              <div className="space-y-3">
+                <div className="grid grid-cols-1 gap-3">
+                  <div 
+                    className={`flex items-center space-x-3 p-3 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+                      weeklyTasks.running
+                        ? 'bg-blue-500/10 border-blue-500 text-blue-700 dark:text-blue-300'
+                        : 'bg-background border-muted-foreground/20 hover:border-blue-500/50'
+                    }`}
+                    onClick={() => handleWeeklyTaskChange('running')}
+                  >
+                    <div className={`w-6 h-6 rounded border-2 flex items-center justify-center ${
+                      weeklyTasks.running ? 'bg-blue-500 border-blue-500' : 'border-muted-foreground/20'
+                    }`}>
+                      {weeklyTasks.running && <Check className="h-4 w-4 text-white" />}
+                    </div>
                     <span className="flex items-center space-x-2">
-                      <Dumbbell className="h-4 w-4" />
-                      <span>Gym Session 1</span>
+                      <Activity className="h-4 w-4 text-blue-500" />
+                      <span>Running Session</span>
                     </span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      checked={weeklyTasks.gym2}
-                      onCheckedChange={() => handleWeeklyTaskChange('gym2')}
-                    />
+                  
+                  <div 
+                    className={`flex items-center space-x-3 p-3 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+                      weeklyTasks.calisthenics
+                        ? 'bg-green-500/10 border-green-500 text-green-700 dark:text-green-300'
+                        : 'bg-background border-muted-foreground/20 hover:border-green-500/50'
+                    }`}
+                    onClick={() => handleWeeklyTaskChange('calisthenics')}
+                  >
+                    <div className={`w-6 h-6 rounded border-2 flex items-center justify-center ${
+                      weeklyTasks.calisthenics ? 'bg-green-500 border-green-500' : 'border-muted-foreground/20'
+                    }`}>
+                      {weeklyTasks.calisthenics && <Check className="h-4 w-4 text-white" />}
+                    </div>
                     <span className="flex items-center space-x-2">
-                      <Dumbbell className="h-4 w-4" />
-                      <span>Gym Session 2</span>
+                      <Dumbbell className="h-4 w-4 text-green-500" />
+                      <span>Calisthenics</span>
                     </span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      checked={weeklyTasks.gym3}
-                      onCheckedChange={() => handleWeeklyTaskChange('gym3')}
-                    />
+                  
+                  <div 
+                    className={`flex items-center space-x-3 p-3 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+                      weeklyTasks.flexibility
+                        ? 'bg-purple-500/10 border-purple-500 text-purple-700 dark:text-purple-300'
+                        : 'bg-background border-muted-foreground/20 hover:border-purple-500/50'
+                    }`}
+                    onClick={() => handleWeeklyTaskChange('flexibility')}
+                  >
+                    <div className={`w-6 h-6 rounded border-2 flex items-center justify-center ${
+                      weeklyTasks.flexibility ? 'bg-purple-500 border-purple-500' : 'border-muted-foreground/20'
+                    }`}>
+                      {weeklyTasks.flexibility && <Check className="h-4 w-4 text-white" />}
+                    </div>
                     <span className="flex items-center space-x-2">
-                      <Dumbbell className="h-4 w-4" />
-                      <span>Gym Session 3</span>
+                      <Heart className="h-4 w-4 text-purple-500" />
+                      <span>Flexibility/Stretching</span>
                     </span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      checked={weeklyTasks.running}
-                      onCheckedChange={() => handleWeeklyTaskChange('running')}
-                    />
-                    <span>Running Session</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      checked={weeklyTasks.calisthenics}
-                      onCheckedChange={() => handleWeeklyTaskChange('calisthenics')}
-                    />
-                    <span>Calisthenics</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      checked={weeklyTasks.flexibility}
-                      onCheckedChange={() => handleWeeklyTaskChange('flexibility')}
-                    />
-                    <span>Flexibility/Stretching</span>
                   </div>
                 </div>
+              </div>
 
                 {completedWeekly === totalWeekly && (
                   <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">

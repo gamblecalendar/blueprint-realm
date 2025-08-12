@@ -19,6 +19,22 @@ const JournalHistory = () => {
     // Sample data - replace with actual data from storage
     {
       id: "1",
+      week: "2025w03",
+      year: 2025,
+      weekNumber: 3,
+      title: "Finding My Rhythm",
+      createdAt: new Date("2025-01-20")
+    },
+    {
+      id: "2",
+      week: "2025w02",
+      year: 2025,
+      weekNumber: 2,
+      title: "Building Momentum",
+      createdAt: new Date("2025-01-13")
+    },
+    {
+      id: "3",
       week: "2025w01",
       year: 2025,
       weekNumber: 1,
@@ -26,12 +42,44 @@ const JournalHistory = () => {
       createdAt: new Date("2025-01-06")
     },
     {
-      id: "2", 
+      id: "4", 
       week: "2024w52",
       year: 2024,
       weekNumber: 52,
       title: "Year End Review",
       createdAt: new Date("2024-12-30")
+    },
+    {
+      id: "5", 
+      week: "2024w51",
+      year: 2024,
+      weekNumber: 51,
+      title: "Holiday Preparations",
+      createdAt: new Date("2024-12-23")
+    },
+    {
+      id: "6", 
+      week: "2024w50",
+      year: 2024,
+      weekNumber: 50,
+      title: "Winter Reflections",
+      createdAt: new Date("2024-12-16")
+    },
+    {
+      id: "7", 
+      week: "2024w49",
+      year: 2024,
+      weekNumber: 49,
+      title: "December Goals",
+      createdAt: new Date("2024-12-09")
+    },
+    {
+      id: "8", 
+      week: "2024w48",
+      year: 2024,
+      weekNumber: 48,
+      title: "Thanksgiving Week",
+      createdAt: new Date("2024-12-02")
     }
   ]);
 
@@ -104,7 +152,11 @@ const JournalHistory = () => {
                   {groupedJournals[year]
                     .sort((a, b) => b.weekNumber - a.weekNumber)
                     .map(journal => (
-                    <Card key={journal.id} className="cursor-pointer hover:shadow-md transition-shadow">
+                    <Card 
+                      key={journal.id} 
+                      className="cursor-pointer hover:shadow-md transition-shadow"
+                      onClick={() => navigate(`/journal/${journal.week}`)}
+                    >
                       <CardContent className="p-4">
                         <div className="flex items-center space-x-2 mb-2">
                           <BookOpen className="h-4 w-4 text-primary" />
