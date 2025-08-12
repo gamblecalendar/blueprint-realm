@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock, BarChart3 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 const TimeBreakdown = () => {
   const navigate = useNavigate();
@@ -53,38 +54,74 @@ const TimeBreakdown = () => {
     }
   };
 
-  const renderTimeCard = (title: string, data: any, icon: React.ReactNode, period: string) => (
-    <Card className="glass-card">
-      <CardHeader>
-        <CardTitle className="flex items-center space-x-2">
-          {icon}
-          <span>{title}</span>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-3">
-          {period === "quarterly" ? (
-            Object.entries(data).map(([quarter, info]: [string, any]) => (
-              <div key={quarter} className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-                <div>
-                  <span className="font-medium uppercase">{quarter}</span>
-                  <p className="text-sm text-muted-foreground">{info.focus}</p>
+  const COLORS = ['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent))', 'hsl(var(--muted))', 'hsl(var(--destructive))', 'hsl(var(--warning))', 'hsl(var(--success))'];
+
+  const renderTimeCard = (title: string, data: any, icon: React.ReactNode, period: string) => {
+    if (period === "quarterly") {
+      return (
+        <Card className="glass-card">
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              {icon}
+              <span>{title}</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {Object.entries(data).map(([quarter, info]: [string, any]) => (
+                <div key={quarter} className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                  <div>
+                    <span className="font-medium uppercase">{quarter}</span>
+                    <p className="text-sm text-muted-foreground">{info.focus}</p>
+                  </div>
+                  <span className="text-lg font-semibold">{info.hours}h</span>
                 </div>
-                <span className="text-lg font-semibold">{info.hours}h</span>
-              </div>
-            ))
-          ) : (
-            Object.entries(data).map(([activity, hours]) => (
-              <div key={activity} className="flex justify-between items-center">
-                <span className="capitalize font-medium">{activity.replace(/([A-Z])/g, ' $1').trim()}</span>
-                <span className="text-lg font-semibold">{hours as number}h</span>
-              </div>
-            ))
-          )}
-        </div>
-      </CardContent>
-    </Card>
-  );
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      );
+    }
+
+    const chartData = Object.entries(data).map(([activity, hours]) => ({
+      name: activity.replace(/([A-Z])/g, ' $1').trim(),
+      value: hours as number,
+      hours: `${hours}h`
+    }));
+
+    return (
+      <Card className="glass-card">
+        <CardHeader>
+          <CardTitle className="flex items-center space-x-2">
+            {icon}
+            <span>{title}</span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="h-80">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                  label={({ name, value }) => `${name}: ${value}h`}
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip formatter={(value) => [`${value}h`, 'Hours']} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-subtle pt-20">

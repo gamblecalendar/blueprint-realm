@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Check } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, Target, Activity, Dumbbell, Heart, Brain, Monitor } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -151,14 +152,18 @@ const Routines = () => {
                   </label>
                   <span className="text-sm text-muted-foreground">{proteinCompleted * 25}g / 125g</span>
                 </div>
-                <div className="grid grid-cols-5 gap-2">
+                <div className="flex gap-1">
                   {[1, 2, 3, 4, 5].map((num) => (
-                    <div key={num} className="flex items-center space-x-2">
-                      <Checkbox
-                        checked={dailyTasks[`protein${num}` as keyof typeof dailyTasks]}
-                        onCheckedChange={() => handleDailyTaskChange(`protein${num}` as keyof typeof dailyTasks)}
-                      />
-                      <span className="text-sm">25g</span>
+                    <div
+                      key={num}
+                      className={`w-12 h-12 rounded-lg border-2 cursor-pointer transition-all duration-200 flex items-center justify-center text-xs font-medium ${
+                        dailyTasks[`protein${num}` as keyof typeof dailyTasks]
+                          ? 'bg-primary border-primary text-primary-foreground'
+                          : 'bg-background border-muted-foreground/20 hover:border-primary/50'
+                      }`}
+                      onClick={() => handleDailyTaskChange(`protein${num}` as keyof typeof dailyTasks)}
+                    >
+                      25g
                     </div>
                   ))}
                 </div>
@@ -173,14 +178,18 @@ const Routines = () => {
                   </label>
                   <span className="text-sm text-muted-foreground">{fiberCompleted * 4}g / 12g</span>
                 </div>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="flex gap-1">
                   {[1, 2, 3].map((num) => (
-                    <div key={num} className="flex items-center space-x-2">
-                      <Checkbox
-                        checked={dailyTasks[`fiber${num}` as keyof typeof dailyTasks]}
-                        onCheckedChange={() => handleDailyTaskChange(`fiber${num}` as keyof typeof dailyTasks)}
-                      />
-                      <span className="text-sm">4g</span>
+                    <div
+                      key={num}
+                      className={`w-16 h-12 rounded-lg border-2 cursor-pointer transition-all duration-200 flex items-center justify-center text-xs font-medium ${
+                        dailyTasks[`fiber${num}` as keyof typeof dailyTasks]
+                          ? 'bg-green-500 border-green-500 text-white'
+                          : 'bg-background border-muted-foreground/20 hover:border-green-500/50'
+                      }`}
+                      onClick={() => handleDailyTaskChange(`fiber${num}` as keyof typeof dailyTasks)}
+                    >
+                      4g
                     </div>
                   ))}
                 </div>
@@ -188,21 +197,37 @@ const Routines = () => {
 
               {/* Other Daily Tasks */}
               <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    checked={dailyTasks.meditation}
-                    onCheckedChange={() => handleDailyTaskChange('meditation')}
-                  />
+                <div 
+                  className={`flex items-center space-x-3 p-3 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+                    dailyTasks.meditation
+                      ? 'bg-purple-500/10 border-purple-500 text-purple-700 dark:text-purple-300'
+                      : 'bg-background border-muted-foreground/20 hover:border-purple-500/50'
+                  }`}
+                  onClick={() => handleDailyTaskChange('meditation')}
+                >
+                  <div className={`w-6 h-6 rounded border-2 flex items-center justify-center ${
+                    dailyTasks.meditation ? 'bg-purple-500 border-purple-500' : 'border-muted-foreground/20'
+                  }`}>
+                    {dailyTasks.meditation && <Check className="h-4 w-4 text-white" />}
+                  </div>
                   <span className="flex items-center space-x-2">
                     <Brain className="h-4 w-4 text-purple-500" />
                     <span>5 Minute Meditation</span>
                   </span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    checked={dailyTasks.computerOff}
-                    onCheckedChange={() => handleDailyTaskChange('computerOff')}
-                  />
+                <div 
+                  className={`flex items-center space-x-3 p-3 rounded-lg border-2 cursor-pointer transition-all duration-200 ${
+                    dailyTasks.computerOff
+                      ? 'bg-blue-500/10 border-blue-500 text-blue-700 dark:text-blue-300'
+                      : 'bg-background border-muted-foreground/20 hover:border-blue-500/50'
+                  }`}
+                  onClick={() => handleDailyTaskChange('computerOff')}
+                >
+                  <div className={`w-6 h-6 rounded border-2 flex items-center justify-center ${
+                    dailyTasks.computerOff ? 'bg-blue-500 border-blue-500' : 'border-muted-foreground/20'
+                  }`}>
+                    {dailyTasks.computerOff && <Check className="h-4 w-4 text-white" />}
+                  </div>
                   <span className="flex items-center space-x-2">
                     <Monitor className="h-4 w-4 text-blue-500" />
                     <span>Turn off computer before 10:30 PM</span>
