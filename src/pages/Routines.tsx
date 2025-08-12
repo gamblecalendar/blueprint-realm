@@ -1,52 +1,85 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, Target, Activity, Dumbbell } from "lucide-react";
+import { ArrowLeft, Target, Activity, Dumbbell, Heart, Brain, Monitor } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Routines = () => {
   const navigate = useNavigate();
   
   // Routines state
-  const [currentProtein, setCurrentProtein] = useState(0);
+  const [dailyTasks, setDailyTasks] = useState({
+    protein1: false,
+    protein2: false,
+    protein3: false,
+    protein4: false,
+    protein5: false,
+    fiber1: false,
+    fiber2: false,
+    fiber3: false,
+    meditation: false,
+    computerOff: false,
+  });
   const [weeklyTasks, setWeeklyTasks] = useState({
     gym1: false,
     gym2: false,
     gym3: false,
     running: false,
+    calisthenics: false,
     flexibility: false,
   });
 
   // Load data from localStorage
   useEffect(() => {
-    const savedProtein = localStorage.getItem('currentProtein');
-    if (savedProtein) {
-      setCurrentProtein(parseInt(savedProtein));
+    const savedDaily = localStorage.getItem('dailyTasks');
+    if (savedDaily) {
+      setDailyTasks(JSON.parse(savedDaily));
     }
 
-    const savedTasks = localStorage.getItem('weeklyTasks');
-    if (savedTasks) {
-      setWeeklyTasks(JSON.parse(savedTasks));
+    const savedWeekly = localStorage.getItem('weeklyTasks');
+    if (savedWeekly) {
+      setWeeklyTasks(JSON.parse(savedWeekly));
     }
   }, []);
 
-  // Save protein to localStorage
-  useEffect(() => {
-    localStorage.setItem('currentProtein', currentProtein.toString());
-  }, [currentProtein]);
-
   // Save tasks to localStorage
+  useEffect(() => {
+    localStorage.setItem('dailyTasks', JSON.stringify(dailyTasks));
+  }, [dailyTasks]);
+
   useEffect(() => {
     localStorage.setItem('weeklyTasks', JSON.stringify(weeklyTasks));
   }, [weeklyTasks]);
 
-  const handleTaskChange = (taskKey: keyof typeof weeklyTasks) => {
+  const handleDailyTaskChange = (taskKey: keyof typeof dailyTasks) => {
+    setDailyTasks(prev => ({
+      ...prev,
+      [taskKey]: !prev[taskKey]
+    }));
+  };
+
+  const handleWeeklyTaskChange = (taskKey: keyof typeof weeklyTasks) => {
     setWeeklyTasks(prev => ({
       ...prev,
       [taskKey]: !prev[taskKey]
     }));
+  };
+
+  const resetDaily = () => {
+    setDailyTasks({
+      protein1: false,
+      protein2: false,
+      protein3: false,
+      protein4: false,
+      protein5: false,
+      fiber1: false,
+      fiber2: false,
+      fiber3: false,
+      meditation: false,
+      computerOff: false,
+    });
   };
 
   const resetWeekly = () => {
@@ -55,14 +88,21 @@ const Routines = () => {
       gym2: false,
       gym3: false,
       running: false,
+      calisthenics: false,
       flexibility: false,
     });
   };
 
-  const completedTasks = Object.values(weeklyTasks).filter(Boolean).length;
-  const totalTasks = Object.keys(weeklyTasks).length;
-  const weeklyProgress = (completedTasks / totalTasks) * 100;
-  const proteinProgress = Math.min((currentProtein / 120) * 100, 100);
+  const completedDaily = Object.values(dailyTasks).filter(Boolean).length;
+  const totalDaily = Object.keys(dailyTasks).length;
+  const dailyProgress = (completedDaily / totalDaily) * 100;
+
+  const completedWeekly = Object.values(weeklyTasks).filter(Boolean).length;
+  const totalWeekly = Object.keys(weeklyTasks).length;
+  const weeklyProgress = (completedWeekly / totalWeekly) * 100;
+
+  const proteinCompleted = Object.values(dailyTasks).slice(0, 5).filter(Boolean).length;
+  const fiberCompleted = Object.values(dailyTasks).slice(5, 8).filter(Boolean).length;
 
   return (
     <div className="min-h-screen bg-gradient-subtle pt-20">
@@ -95,28 +135,92 @@ const Routines = () => {
                 <span>Daily Routine</span>
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm font-medium">Progress</span>
+                <span className="text-sm text-muted-foreground">{completedDaily}/{totalDaily} completed</span>
+              </div>
+              <Progress value={dailyProgress} className="w-full mb-6" />
+              
+              {/* Protein Section */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm font-medium">Protein Goal</label>
-                  <span className="text-sm text-muted-foreground">{currentProtein}g / 120g</span>
+                  <label className="text-sm font-medium flex items-center space-x-2">
+                    <Heart className="h-4 w-4 text-red-500" />
+                    <span>Protein Goal</span>
+                  </label>
+                  <span className="text-sm text-muted-foreground">{proteinCompleted * 25}g / 125g</span>
                 </div>
-                <Input
-                  type="number"
-                  placeholder="Enter protein amount"
-                  value={currentProtein}
-                  onChange={(e) => setCurrentProtein(Number(e.target.value))}
-                  className="w-full"
-                />
-                <Progress value={proteinProgress} className="w-full" />
-                <Button 
-                  onClick={() => setCurrentProtein(0)} 
-                  variant="outline" 
-                  size="sm"
-                >
-                  Reset Daily
-                </Button>
+                <div className="grid grid-cols-5 gap-2">
+                  {[1, 2, 3, 4, 5].map((num) => (
+                    <div key={num} className="flex items-center space-x-2">
+                      <Checkbox
+                        checked={dailyTasks[`protein${num}` as keyof typeof dailyTasks]}
+                        onCheckedChange={() => handleDailyTaskChange(`protein${num}` as keyof typeof dailyTasks)}
+                      />
+                      <span className="text-sm">25g</span>
+                    </div>
+                  ))}
+                </div>
               </div>
+
+              {/* Fiber Section */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="text-sm font-medium flex items-center space-x-2">
+                    <Heart className="h-4 w-4 text-green-500" />
+                    <span>Fiber Intake</span>
+                  </label>
+                  <span className="text-sm text-muted-foreground">{fiberCompleted * 4}g / 12g</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  {[1, 2, 3].map((num) => (
+                    <div key={num} className="flex items-center space-x-2">
+                      <Checkbox
+                        checked={dailyTasks[`fiber${num}` as keyof typeof dailyTasks]}
+                        onCheckedChange={() => handleDailyTaskChange(`fiber${num}` as keyof typeof dailyTasks)}
+                      />
+                      <span className="text-sm">4g</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Other Daily Tasks */}
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    checked={dailyTasks.meditation}
+                    onCheckedChange={() => handleDailyTaskChange('meditation')}
+                  />
+                  <span className="flex items-center space-x-2">
+                    <Brain className="h-4 w-4 text-purple-500" />
+                    <span>5 Minute Meditation</span>
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    checked={dailyTasks.computerOff}
+                    onCheckedChange={() => handleDailyTaskChange('computerOff')}
+                  />
+                  <span className="flex items-center space-x-2">
+                    <Monitor className="h-4 w-4 text-blue-500" />
+                    <span>Turn off computer before 10:30 PM</span>
+                  </span>
+                </div>
+              </div>
+
+              {completedDaily === totalDaily && (
+                <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                  <p className="text-green-600 dark:text-green-400 font-medium">
+                    🎉 Perfect day! You've completed all your daily routines!
+                  </p>
+                </div>
+              )}
+
+              <Button onClick={resetDaily} variant="outline" size="sm">
+                Reset Daily
+              </Button>
             </CardContent>
           </Card>
 
@@ -132,71 +236,68 @@ const Routines = () => {
               <div className="space-y-3">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-sm font-medium">Progress</span>
-                  <span className="text-sm text-muted-foreground">{completedTasks}/{totalTasks} completed</span>
+                  <span className="text-sm text-muted-foreground">{completedWeekly}/{totalWeekly} completed</span>
                 </div>
                 <Progress value={weeklyProgress} className="w-full mb-4" />
                 
-                <div className="space-y-2">
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
                       checked={weeklyTasks.gym1}
-                      onChange={() => handleTaskChange('gym1')}
-                      className="rounded"
+                      onCheckedChange={() => handleWeeklyTaskChange('gym1')}
                     />
                     <span className="flex items-center space-x-2">
                       <Dumbbell className="h-4 w-4" />
                       <span>Gym Session 1</span>
                     </span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
                       checked={weeklyTasks.gym2}
-                      onChange={() => handleTaskChange('gym2')}
-                      className="rounded"
+                      onCheckedChange={() => handleWeeklyTaskChange('gym2')}
                     />
                     <span className="flex items-center space-x-2">
                       <Dumbbell className="h-4 w-4" />
                       <span>Gym Session 2</span>
                     </span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
                       checked={weeklyTasks.gym3}
-                      onChange={() => handleTaskChange('gym3')}
-                      className="rounded"
+                      onCheckedChange={() => handleWeeklyTaskChange('gym3')}
                     />
                     <span className="flex items-center space-x-2">
                       <Dumbbell className="h-4 w-4" />
                       <span>Gym Session 3</span>
                     </span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
                       checked={weeklyTasks.running}
-                      onChange={() => handleTaskChange('running')}
-                      className="rounded"
+                      onCheckedChange={() => handleWeeklyTaskChange('running')}
                     />
                     <span>Running Session</span>
-                  </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      checked={weeklyTasks.calisthenics}
+                      onCheckedChange={() => handleWeeklyTaskChange('calisthenics')}
+                    />
+                    <span>Calisthenics</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
                       checked={weeklyTasks.flexibility}
-                      onChange={() => handleTaskChange('flexibility')}
-                      className="rounded"
+                      onCheckedChange={() => handleWeeklyTaskChange('flexibility')}
                     />
                     <span>Flexibility/Stretching</span>
-                  </label>
+                  </div>
                 </div>
 
-                {completedTasks === totalTasks && (
+                {completedWeekly === totalWeekly && (
                   <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
                     <p className="text-green-600 dark:text-green-400 font-medium">
-                      🎉 Great job! You've completed all your weekly routines!
+                      🎉 Amazing week! You've completed all your weekly routines!
                     </p>
                   </div>
                 )}

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, Users, Target, BookOpen, ChevronRight } from "lucide-react";
+import { Heart, Users, Target, BookOpen, ChevronRight, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const About = () => {
@@ -88,6 +88,24 @@ const About = () => {
               <CardContent>
                 <p className="text-muted-foreground">
                   A collection of my weekly reflections and memories
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Time Breakdown Preview */}
+            <Card className="glass-card cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate("/time-breakdown")}>
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <Clock className="h-5 w-5 text-primary" />
+                    <span>Time Breakdown</span>
+                  </div>
+                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  How I allocate my time daily, weekly, monthly, and yearly
                 </p>
               </CardContent>
             </Card>

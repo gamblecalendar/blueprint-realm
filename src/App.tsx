@@ -17,6 +17,7 @@ import RoleModels from "./pages/RoleModels";
 import Routines from "./pages/Routines";
 import JournalHistory from "./pages/JournalHistory";
 import JournalEntry from "./pages/JournalEntry";
+import TimeBreakdown from "./pages/TimeBreakdown";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/routines" element={<Routines />} />
           <Route path="/journal-history" element={<JournalHistory />} />
           <Route path="/journal/:weekId" element={<JournalEntry />} />
+          <Route path="/time-breakdown" element={<TimeBreakdown />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
