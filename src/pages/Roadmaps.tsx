@@ -1,22 +1,34 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { CheckCircle, Circle, Palette, Server, Layers } from "lucide-react";
+import { CheckCircle, Circle, Palette, Server, Layers, Building, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import React from "react";
 
 const Roadmaps = () => {
+  const navigate = useNavigate();
+  
   const roadmapTabs = [
     { 
       id: "account-manager", 
       name: "Account Manager", 
       icon: Palette, 
       active: true 
+    },
+    { 
+      id: "saas-domain", 
+      name: "SaaS Domain Knowledge", 
+      icon: Building, 
+      active: false 
     }
   ];
 
   const roadmapData = {
-    title: "Account Manager Career Path",
-    description: "Complete roadmap to become a successful Account Manager",
-    sections: [
+    "account-manager": {
+      title: "Account Manager Career Path",
+      description: "Complete roadmap to become a successful Account Manager",
+      icon: Palette,
+      sections: [
       {
         title: "Skills to Acquire",
         status: "in-progress",
@@ -76,7 +88,110 @@ const Roadmaps = () => {
         ]
       }
     ]
+    },
+    "saas-domain": {
+      title: "SaaS Domain Knowledge",
+      description: "Master Joget platform expertise and SaaS selling fundamentals",
+      icon: Building,
+      sections: [
+        {
+          title: "Deep Product Knowledge",
+          status: "not-started",
+          completed: 0,
+          total: 15,
+          topics: [
+            { name: "Form Builder - Dynamic forms with validation rules", completed: false },
+            { name: "Workflow Designer - Visual business process automation", completed: false },
+            { name: "List Builder (Datalist) - Reports and CRUD interfaces", completed: false },
+            { name: "UI Builder - Complete responsive web applications", completed: false },
+            { name: "App-Centric Approach understanding", completed: false },
+            { name: "Plugin Architecture and Marketplace", completed: false },
+            { name: "Open Source vs Enterprise differences", completed: false },
+            { name: "Deployment options (SaaS, on-premise, private cloud)", completed: false },
+            { name: "SaaS tier limits and features", completed: false },
+            { name: "HR use cases (Onboarding, Leave, Performance)", completed: false },
+            { name: "Finance use cases (Requisitions, Expenses, Invoices)", completed: false },
+            { name: "IT use cases (Helpdesk, Change Management, Assets)", completed: false },
+            { name: "Operations use cases (Quality Control, Incidents)", completed: false },
+            { name: "Pricing strategy and value articulation", completed: false },
+            { name: "Integration capabilities and APIs", completed: false }
+          ]
+        },
+        {
+          title: "Customer & Industry Knowledge",
+          status: "not-started",
+          completed: 0,
+          total: 12,
+          topics: [
+            { name: "Mid-market to enterprise company profiles", completed: false },
+            { name: "Manufacturing industry pain points", completed: false },
+            { name: "Government sector requirements", completed: false },
+            { name: "Banking & Finance (BFSI) use cases", completed: false },
+            { name: "Healthcare process automation needs", completed: false },
+            { name: "Education sector applications", completed: false },
+            { name: "CIO/Head of IT persona and pain points", completed: false },
+            { name: "Business Unit Head challenges", completed: false },
+            { name: "Business Analyst requirements", completed: false },
+            { name: "Shadow IT risks and governance", completed: false },
+            { name: "Application backlog solutions", completed: false },
+            { name: "Citizen developer enablement", completed: false }
+          ]
+        },
+        {
+          title: "Competitive Landscape Knowledge",
+          status: "not-started",
+          completed: 0,
+          total: 8,
+          topics: [
+            { name: "Microsoft Power Apps positioning", completed: false },
+            { name: "OutSystems/Mendix comparison", completed: false },
+            { name: "BPM specialists (Nintex, K2) differentiation", completed: false },
+            { name: "Spreadsheet tools (Airtable, Smartsheet) limitations", completed: false },
+            { name: "Flexibility and openness advantages", completed: false },
+            { name: "Cost-effectiveness positioning", completed: false },
+            { name: "Learning curve benefits", completed: false },
+            { name: "Total Cost of Ownership (TCO) arguments", completed: false }
+          ]
+        },
+        {
+          title: "Business & Financial Acumen",
+          status: "not-started",
+          completed: 0,
+          total: 10,
+          topics: [
+            { name: "Value selling vs feature selling", completed: false },
+            { name: "ROI calculation methodology", completed: false },
+            { name: "Cost savings quantification", completed: false },
+            { name: "Cost avoidance strategies", completed: false },
+            { name: "Revenue increase opportunities", completed: false },
+            { name: "Qualitative benefits articulation", completed: false },
+            { name: "Business case development", completed: false },
+            { name: "Time-to-value demonstration", completed: false },
+            { name: "Compliance and risk reduction", completed: false },
+            { name: "Vendor consolidation benefits", completed: false }
+          ]
+        },
+        {
+          title: "Technical Acumen",
+          status: "not-started",
+          completed: 0,
+          total: 8,
+          topics: [
+            { name: "API concepts and REST integration", completed: false },
+            { name: "Database fundamentals", completed: false },
+            { name: "Cloud concepts (SaaS, PaaS, IaaS)", completed: false },
+            { name: "Security terminology (RBAC, SSO)", completed: false },
+            { name: "Data encryption basics", completed: false },
+            { name: "Integration architecture understanding", completed: false },
+            { name: "Scalability concepts", completed: false },
+            { name: "Performance considerations", completed: false }
+          ]
+        }
+      ]
+    }
   };
+  
+  const activeRoadmap = roadmapData["account-manager"];
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -132,29 +247,36 @@ const Roadmaps = () => {
         <Card className="card-gradient p-8 mb-8">
           <div className="text-center mb-8">
             <div className="w-16 h-16 rounded-full bg-gradient-primary flex items-center justify-center mx-auto mb-4">
-              <Palette className="h-8 w-8 text-white" />
+              {React.createElement(activeRoadmap.icon, { className: "h-8 w-8 text-white" })}
             </div>
             <h2 className="text-2xl md:text-3xl font-bold gradient-text mb-2">
-              {roadmapData.title}
+              {activeRoadmap.title}
             </h2>
             <p className="text-muted-foreground">
-              {roadmapData.description}
+              {activeRoadmap.description}
             </p>
           </div>
 
           {/* Progress Overview */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {roadmapData.sections.map((section, index) => (
-              <Card key={index} className="bg-secondary/50 p-6">
+            {activeRoadmap.sections.map((section, index) => (
+              <Card 
+                key={index} 
+                className="bg-secondary/50 p-6 cursor-pointer hover:bg-secondary/70 transition-all group"
+                onClick={() => navigate(`/roadmap-section/${section.title.toLowerCase().replace(/\s+/g, '-')}`)}
+              >
                 <div className="flex items-center justify-between mb-3">
                   <h3 className={`font-semibold ${getStatusColor(section.status)}`}>
                     {section.title}
                   </h3>
-                  {section.status === "completed" && (
-                    <div className="text-green-500 text-xs bg-green-500/20 px-2 py-1 rounded">
-                      COMPLETED
-                    </div>
-                  )}
+                  <div className="flex items-center space-x-2">
+                    {section.status === "completed" && (
+                      <div className="text-green-500 text-xs bg-green-500/20 px-2 py-1 rounded">
+                        COMPLETED
+                      </div>
+                    )}
+                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                  </div>
                 </div>
                 <div className="mb-3">
                   <Progress 
@@ -172,7 +294,7 @@ const Roadmaps = () => {
 
         {/* Detailed Sections */}
         <div className="space-y-6">
-          {roadmapData.sections.map((section, sectionIndex) => (
+          {activeRoadmap.sections.map((section, sectionIndex) => (
             <Card key={sectionIndex} className="card-gradient p-6">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-3">

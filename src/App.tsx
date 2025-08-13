@@ -20,6 +20,7 @@ import JournalEntry from "./pages/JournalEntry";
 import TimeBreakdown from "./pages/TimeBreakdown";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import RoadmapSection from "./pages/RoadmapSection";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/systems" element={<Systems />} />
           <Route path="/systems/:systemName" element={<SystemDetail />} />
           <Route path="/roadmaps" element={<Roadmaps />} />
+          <Route path="/roadmap-section/:sectionId" element={<RoadmapSection />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/about" element={<About />} />
           <Route path="/values" element={<Values />} />
