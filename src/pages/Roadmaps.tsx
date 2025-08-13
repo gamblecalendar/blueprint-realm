@@ -4,12 +4,71 @@ import { Progress } from "@/components/ui/progress";
 import { CheckCircle, Circle, Palette, Server, Layers } from "lucide-react";
 
 const Roadmaps = () => {
-  const roadmapTabs = [];
+  const roadmapTabs = [
+    { 
+      id: "account-manager", 
+      name: "Account Manager", 
+      icon: Palette, 
+      active: true 
+    }
+  ];
 
   const roadmapData = {
-    title: "My Roadmap",
-    description: "Personal development roadmap",
-    sections: []
+    title: "Account Manager Career Path",
+    description: "Complete roadmap to become a successful Account Manager",
+    sections: [
+      {
+        title: "Skills to Acquire",
+        status: "in-progress",
+        completed: 3,
+        total: 8,
+        topics: [
+          { name: "Active Listening & Empathetic Communication", completed: true },
+          { name: "Organization & Time Management", completed: true },
+          { name: "Problem-Solving", completed: true },
+          { name: "Interviewing & Storytelling", completed: false },
+          { name: "Building Relationships (with clients and internal teams)", completed: false },
+          { name: "Meticulous Note-Taking", completed: false },
+          { name: "Asking Insightful, Strategic Questions", completed: false },
+          { name: "Meeting Facilitation & Basic Presentation Skills", completed: false }
+        ]
+      },
+      {
+        title: "Knowledge to Gain",
+        status: "not-started",
+        completed: 0,
+        total: 8,
+        topics: [
+          { name: "Key Business Metrics (Churn, NRR, ARR, CLV)", completed: false },
+          { name: "Role Definitions (AM vs AE vs CSM)", completed: false },
+          { name: "CRM Fundamentals (Salesforce, HubSpot)", completed: false },
+          { name: "Target Industry Knowledge (SaaS, Adtech, Fintech)", completed: false },
+          { name: "Deep Product Knowledge", completed: false },
+          { name: "Internal Company Processes", completed: false },
+          { name: "Your Client Portfolio Understanding", completed: false },
+          { name: "Opportunity Signals Recognition", completed: false }
+        ]
+      },
+      {
+        title: "Experience to Build",
+        status: "not-started",
+        completed: 0,
+        total: 11,
+        topics: [
+          { name: "Complete free online CRM certification", completed: false },
+          { name: "Conduct informational interviews with Account Managers", completed: false },
+          { name: "Rewrite resume to highlight customer-facing skills", completed: false },
+          { name: "Secure entry-level job (Coordinator, SDR, CSA)", completed: false },
+          { name: "Complete company onboarding and training program", completed: false },
+          { name: "Shadow senior team members on client calls", completed: false },
+          { name: "Handle and resolve inbound client requests", completed: false },
+          { name: "Achieve a 'small win' with positive client feedback", completed: false },
+          { name: "Lead a simple client check-in call independently", completed: false },
+          { name: "Assist in preparing for a Quarterly Business Review (QBR)", completed: false },
+          { name: "Identify a potential upsell or growth opportunity", completed: false }
+        ]
+      }
+    ]
   };
 
   const getStatusColor = (status: string) => {
