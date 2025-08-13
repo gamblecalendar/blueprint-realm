@@ -21,7 +21,7 @@ const Roadmaps = () => {
         title: "Skills to Acquire",
         status: "in-progress",
         completed: 3,
-        total: 8,
+        total: 12,
         topics: [
           { name: "Active Listening & Empathetic Communication", completed: true },
           { name: "Organization & Time Management", completed: true },
@@ -30,14 +30,18 @@ const Roadmaps = () => {
           { name: "Building Relationships (with clients and internal teams)", completed: false },
           { name: "Meticulous Note-Taking", completed: false },
           { name: "Asking Insightful, Strategic Questions", completed: false },
-          { name: "Meeting Facilitation & Basic Presentation Skills", completed: false }
+          { name: "Meeting Facilitation & Basic Presentation Skills", completed: false },
+          { name: "Negotiation and Persuasion", completed: false },
+          { name: "Strategic Thinking", completed: false },
+          { name: "Adaptability", completed: false },
+          { name: "Leadership", completed: false }
         ]
       },
       {
         title: "Knowledge to Gain",
         status: "not-started",
         completed: 0,
-        total: 8,
+        total: 11,
         topics: [
           { name: "Key Business Metrics (Churn, NRR, ARR, CLV)", completed: false },
           { name: "Role Definitions (AM vs AE vs CSM)", completed: false },
@@ -46,7 +50,10 @@ const Roadmaps = () => {
           { name: "Deep Product Knowledge", completed: false },
           { name: "Internal Company Processes", completed: false },
           { name: "Your Client Portfolio Understanding", completed: false },
-          { name: "Opportunity Signals Recognition", completed: false }
+          { name: "Opportunity Signals Recognition", completed: false },
+          { name: "Microsoft Office Suite (Excel, PowerPoint)", completed: false },
+          { name: "Sales and Marketing Principles", completed: false },
+          { name: "Data Analysis", completed: false }
         ]
       },
       {
