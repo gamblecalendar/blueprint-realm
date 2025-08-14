@@ -3,23 +3,22 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { CheckCircle, Circle, Palette, Server, Layers, Building, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 
 const Roadmaps = () => {
   const navigate = useNavigate();
+  const [activeRoadmapId, setActiveRoadmapId] = useState("account-manager");
   
   const roadmapTabs = [
     { 
       id: "account-manager", 
       name: "Account Manager", 
-      icon: Palette, 
-      active: true 
+      icon: Palette
     },
     { 
       id: "saas-domain", 
       name: "SaaS Domain Knowledge", 
-      icon: Building, 
-      active: false 
+      icon: Building
     }
   ];
 
@@ -191,7 +190,7 @@ const Roadmaps = () => {
     }
   };
   
-  const activeRoadmap = roadmapData["account-manager"];
+  const activeRoadmap = roadmapData[activeRoadmapId as keyof typeof roadmapData];
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -227,12 +226,13 @@ const Roadmaps = () => {
             return (
               <Button
                 key={tab.id}
-                variant={tab.active ? "default" : "outline"}
+                variant={activeRoadmapId === tab.id ? "default" : "outline"}
                 className={`flex items-center space-x-2 ${
-                  tab.active 
+                  activeRoadmapId === tab.id 
                     ? "bg-gradient-primary glow-effect" 
                     : "hover:bg-secondary"
                 } transition-smooth`}
+                onClick={() => setActiveRoadmapId(tab.id)}
               >
                 <TabIcon className="h-4 w-4" />
                 <span>{tab.name}</span>
